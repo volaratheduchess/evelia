@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Bonheur+Royale&family=Fleur+De+Leah&family=Jacquard+12&display=swap');
+</style>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evelia</title>
+  <link rel="icon" type="image/x-icon" href="https://s13.gifyu.com/images/bmnb1.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+
+
+<div id="loader">
+  <div class="loader-content">
+    <h1>Evelia Awaits...</h1>
+    <div id="countdown">
+      <span id="days">0</span>d :
+      <span id="hours">0</span>h :
+      <span id="minutes">0</span>m :
+      <span id="seconds">0</span>s
+    </div>
+    <p class="click-text">Enter the Realm</p>
+  </div>
+</div>
+
+
+
+  <!-- Navigation Bar -->
+  <header>
+    <div class="logo">Evelia</div>
+  </header>
+
+  <!-- Corner Overlay -->
+<img src="https://s12.gifyu.com/images/bEGYB.png" class="corner-overlay" id="cornerBtn">
+<div id="cornerPopup" class="corner-popup">
+  <div class="popup-inner" style="max-height:85vh; overflow-y:auto; position:relative;">
+    <span class="close-corner">&times;</span>
+
+    <h2>Credits</h2>
+    <p>This site was built by Volara, inspired by Avalon.</p>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-star">✦</span>
+      <div class="divider-line right"></div>
+    </div>
+    <h2>Participating Creators</h2>
+    <p>Thank you to everyone who contributed to this project, including:</p>
+    <p>
+      Niori - for making Feralyn Hold and The Dread Mire<br>
+      Kurosaki.pare - for making the Gods, Lothlo, and part of Thang'Tur<br>
+      RedactedforChristmas - for making Beluar<br>
+      Cantras - for making Chorla<br>
+      Vess - for making The Jagged Maw<br>
+      Komodo - for making Thang'Tur<br>
+      And everyone who contributed music for the locations. See the full playlist below!
+    </p>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-star">✦</span>
+      <div class="divider-line right"></div>
+    </div>
+
+    <h2>Music of Evelia</h2>
+    <p style="margin-bottom:14px;">Ambient scores composed for each location.</p>
+
+    <!-- PLAYLIST -->
+    <div id="eveliaPlayer">
+
+      <div class="ev-track-list">
+        <div class="ev-track active" data-src="feralyn-hold.mp3" onclick="evPlay(this)">
+          <span class="ev-track-icon">♪</span>
+          <div class="ev-track-info">
+            <span class="ev-track-name">Feralyn Hold</span>
+            <span class="ev-track-loc">Feralyn Hold</span>          
+            <span class="ev-track-loc">by Niori</span>
+          </div>
+          <span class="ev-track-playing">▶</span>
+        </div>
+        <div class="ev-track" data-src="Remember-Chorla.mp3" onclick="evPlay(this)">
+          <span class="ev-track-icon">♪</span>
+          <div class="ev-track-info">
+            <span class="ev-track-name">Remember Chorla</span>
+            <span class="ev-track-loc">Chorla</span>
+            <span class="ev-track-loc">by Cantras</span>            
+          </div>
+          <span class="ev-track-playing">▶</span>
+        </div>
+        <div class="ev-track" data-src="Hymn-of-the-Unnamed-Light.mp3" onclick="evPlay(this)">
+          <span class="ev-track-icon">♪</span>
+          <div class="ev-track-info">
+            <span class="ev-track-name">Hymn of the Unnamed Light</span>
+            <span class="ev-track-loc">Lothlo</span>       
+            <span class="ev-track-loc">By Volara</span>
+          </div>
+          <span class="ev-track-playing">▶</span>
+        </div>
+        <div class="ev-track" data-src="Where-the-Gods-Once-Walked.mp3" onclick="evPlay(this)">
+          <span class="ev-track-icon">♪</span>
+          <div class="ev-track-info">
+            <span class="ev-track-name">Where the Gods Once Walked</span>
+            <span class="ev-track-loc">Rhangyl Grove</span>
+            <span class="ev-track-loc">by Volara</span>
+          </div>
+          <span class="ev-track-playing">▶</span>
+        </div>
+        <div class="ev-track" data-src="The-Grinding-of-Thang'Tur.mp3" onclick="evPlay(this)">
+          <span class="ev-track-icon">♪</span>
+          <div class="ev-track-info">
+            <span class="ev-track-name">The Grinding of Thang-Tur</span>
+            <span class="ev-track-loc">Thang-Tur</span>
+            <span class="ev-track-loc">by Niori</span>
+          </div>
+          <span class="ev-track-playing">▶</span>
+        </div>
+        <div class="ev-track" data-src="The-Iron-That-Forgot-Why-It-Stands.mp3" onclick="evPlay(this)">
+          <span class="ev-track-icon">♪</span>
+          <div class="ev-track-info">
+            <span class="ev-track-name">The Grinding of Thang-Tur</span>
+            <span class="ev-track-loc">Thang-Tur</span>
+            <span class="ev-track-loc">by Komodo</span>
+          </div>
+          <span class="ev-track-playing">▶</span>
+        </div>
+        <div class="ev-track" data-src="i-am-the-maw.mp3" onclick="evPlay(this)">
+          <span class="ev-track-icon">♪</span>
+          <div class="ev-track-info">
+            <span class="ev-track-name">I Am The Maw</span>
+            <span class="ev-track-loc">The Jagged Maw</span>
+            <span class="ev-track-loc">by CookieJar</span>
+          </div>
+          <span class="ev-track-playing">▶</span>
+        </div>
+        <div class="ev-track" data-src="When-I-Was-Young.mp3" onclick="evPlay(this)">
+          <span class="ev-track-icon">♪</span>
+          <div class="ev-track-info">
+            <span class="ev-track-name">When I Was Young...</span>
+            <span class="ev-track-loc">Beluar</span>
+            <span class="ev-track-loc">by Komodo</span>
+          </div>
+          <span class="ev-track-playing">▶</span>
+        </div>
+        <div class="ev-track" data-src="We-Were-Not-Forgotten.mp3" onclick="evPlay(this)">
+          <span class="ev-track-icon">♪</span>
+          <div class="ev-track-info">
+            <span class="ev-track-name">We Were Not Forgotten</span>
+            <span class="ev-track-loc">The Dread Mire</span>
+            <span class="ev-track-loc">by Niori</span>
+          </div>
+          <span class="ev-track-playing">▶</span>
+        </div>
+      </div>
+      <audio id="evAudio" preload="metadata"></audio>
+
+      <div class="ev-player-controls">
+        <button class="ev-prev" onclick="evPrev()">&#8249;</button>
+        <button class="ev-playpause" id="evPlayBtn" onclick="evToggle()">▶</button>
+        <button class="ev-next" onclick="evNext()">&#8250;</button>
+      </div>
+
+      <div class="ev-progress-wrap" onclick="evSeek(event)">
+        <div class="ev-progress-bar" id="evBar"></div>
+      </div>
+
+      <div class="ev-time-row">
+        <span id="evTime">0:00</span>
+        <span id="evDuration">0:00</span>
+      </div>
+
+      <div class="ev-now-playing">
+        <span id="evNowPlaying">Select a track above</span>
+      </div>
+
+    </div><!-- /eveliaPlayer -->
+
+  </div>
+</div>
+
+
+
+
+ <!-- GODS Corner Overlay -->
+<img src="https://s13.gifyu.com/images/bmUbA.png" class="tbf-corner-overlay" id="tbfCornerBtn">
+
+<div id="tbfCornerPopup" class="corner-popup">
+  <div class="popup-inner gods-popup" id="tbfPopupInner">
+    <span class="close-corner close-tbf-corner">&times;</span>
+    <iframe src="gods.html" style="width:100%; height:100%; border:none; border-radius:8px;"></iframe>
+  </div>
+</div>
+
+
+<a href="https://volaratheduchess.github.io/thebrassfoundry/" target="_blank">
+  <img src="https://s13.gifyu.com/images/bm0Wr.png" class="tbf-corner-overlay-right">
+</a>
+</div>
+
+
+
+
+
+
+
+
+<!-- World Info Corner -->
+<img src="evelia_logo.svg" class="world-corner-overlay" id="worldBtn">
+
+<div id="worldPopup" class="corner-popup">
+  <div class="popup-inner world-popup" id="worldPopupInner">
+    <span class="close-corner close-world">&times;</span>
+
+    <h2>The World of Evelia</h2>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-star">✦</span>
+      <div class="divider-line right"></div>
+    </div>
+
+    <p>Evelia is a world shaped by two great empires and a wound in the earth that has never fully healed.</p>
+    <br>
+
+    <h2>The Two Empires</h2>
+    <p><strong>Eladoria</strong> lies to the west. A civilization built on order, agriculture, and quiet faith. They worship Viaraxis, goddess of magic, and tend land blessed by her overflow from the Scar. Magic in Eladoria is studied, refined, and treated as a gift to be understood.</p>
+    <br>
+    <p><strong>Ra'Ka'Tul</strong> lies to the east. A militaristic empire founded at the Crater Bastion — the birthplace of Zaryth, god of tenacity. Where Eladoria refines magic, Ra'Ka'Tul endures it. The land runs volatile and hungry, and its people are stronger for surviving it.</p>
+    <br>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-star">✦</span>
+      <div class="divider-line right"></div>
+    </div>
+
+    <h2>The Scar of Sundering</h2>
+    <p>Between the two empires lies the Scar — the wound where Viaraxis first entered the world. It is not a ruin or a battlefield. It is a living thing. On calm days it glows. On stormy ones it sings. Magic bleeds from it constantly, settling differently on each side: orderly and nurturing to the west, raw and volatile to the east.</p>
+    <br>
+
+    <h2>The Ley Pulse</h2>
+    <p>Every century, the Scar convulses. A wave of wild magic — called the Churn — floods the entire continent, amplifying the blessings of every god beyond what they intended. Harvests surge. Roads grow easier. Warriors are tested beyond their limits. The greedy grow monstrous. And from the Scar itself, things crawl out that were not there before.</p>
+    <br>
+    <p>No settlement near the Scar has gone unaffected. Some have not survived.</p>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-star">✦</span>
+      <div class="divider-line right"></div>
+    </div>
+
+    <h2>The Gods</h2>
+    <p>The gods of Evelia were not born from nothing — they were born from mortals. From the first time an emotion was felt deeply enough by enough souls to take divine form. Seven gods shape this world. Click the gods icon in the top left to learn more.</p>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Map Container -->
+   <div class="map-wrapper">
+  <div class="map-container">
+    <img src="https://s13.gifyu.com/images/bmuSL.md.jpg" class="map-background" alt="Fantasy Map">
+
+    <!-- Markers -->
+   <div class="marker1" style="top:62%; left:61%;" 
+     data-name="The Dread Mire" 
+     data-desc="<p>The Dread Mire is not a place that was created in a single moment. It is the result of time, pressure, and unresolved magic slowly sinking into the land. Where the Scar of Sundering tore the world open, most regions reacted violently or stabilized into something usable. The Mire did neither.
+<br>
+It absorbed.
+<br>
+Ley energy pooled beneath the surface rather than dispersing. Instead of erupting into chaos, it settled into the soil, the water, and the roots of ancient forests. Over centuries, this accumulation created a self-sustaining magical ecosystem that feeds on memory, emotion, and presence.
+<br>
+The Mire is not alive in the traditional sense, but it behaves as if it is aware. It reacts to intrusion. It adapts to patterns. It changes in response to prolonged exposure to individuals.
+<br>
+Those who enter briefly experience discomfort.
+<br>
+Those who remain begin to change.
+<br>
+Those who belong are no longer entirely separate from it.
+</p>
+<hr>
+<h2>THE ENVIRONMENT</h2>
+<p>
+The Dread Mire is a vast wetland stretching across the eastern region beyond the Jagged Maw. Its terrain is inconsistent and unreliable.
+<br><br>
+The ground shifts between:
+<br>
+Soft mud that swallows weight slowly
+<br>
+Dense root networks that form natural pathways
+<br>
+Shallow water that may suddenly deepen without warning
+<br><br>
+The water itself is dark and reflective, but not always accurate. Reflections sometimes lag behind movement or show different expressions than the one being made.
+<br>
+Fog is constant in most regions. It dampens sound and distorts distance. Objects appear closer or farther than they are.
+<br>
+Trees grow unnaturally tall and thin, their bark often split or hollow. Some emit faint mist from within, especially during night cycles or ley fluctuations.
+<br>
+Light behaves strangely. Sunlight rarely reaches the ground fully, and when it does, it appears diffused, almost underwater in quality.
+<br>
+There is no stable map of the Mire. Any attempt to chart it becomes outdated within days, sometimes hours.
+</p>
+<hr>
+<h2>THE HOLLOW BASIN</h2>
+<p>
+At the center of the Mire lies a region known as the Hollow Basin.
+<br>
+This area is devoid of typical plant life. The ground is soft, almost ash-like, and absorbs sound completely. Even footsteps seem muted beyond what should be possible.
+<br>
+The Basin is where the whispers are strongest.
+<br>
+Unlike the rest of the Mire, where voices are fragmented or unclear, the Hollow Basin produces coherent speech. Travelers report hearing direct statements, questions, or instructions.
+<br>
+No confirmed expedition has fully explored the Basin and returned unchanged.
+<br>
+The Mireborne do not forbid entry.
+<br>
+They simply do not follow.
+</p>
+<hr>
+<h2>THE SUNKEN VEINS</h2>
+<p>
+Beneath the Mire are channels of concentrated ley energy known as the Sunken Veins.
+<br>
+These veins pulse intermittently, especially during Churn events. When active, they cause rapid changes in the surrounding environment.
+<br><br>
+Effects include:
+Sudden growth or decay of plant life
+<br>
+Unpredictable mutations in creatures
+<br>
+Mental disorientation or heightened perception
+<br><br>
+At night, parts of the Mire faintly glow due to these veins. The glow is not constant and moves slowly beneath the surface like a current.
+<br>
+Some Mireborne settlements are built near stable veins to harness their energy.
+</p>
+<hr>
+<h2>THE DROWNED RUINS</h2>
+<p>
+Scattered throughout the Mire are remnants of structures from before its full formation.
+<br>
+These ruins are partially submerged and often overgrown with moss and root systems. The architecture suggests an advanced civilization, though its origin is unknown.
+<br>
+Notable features include:
+Statues with intentionally removed faces
+<br>
+Stone pathways that lead into water and do not re-emerge
+<br>
+Chambers filled with preserved air despite being underwater
+<br><br>
+Artifacts recovered from these ruins are unstable. They often carry residual memory or emotional imprint.
+<br>
+Explorers who spend too long in these areas report seeing events that appear to be from the past, though they cannot confirm if these are true memories or projections.
+</p>
+<hr>
+<h2>THE MAGIC OF THE MIRE</h2>
+<p>
+Magic in the Mire behaves differently than anywhere else in Evelia.
+<br>
+It does not dissipate normally.
+<br>
+Instead, it lingers and accumulates.
+<br>
+Casting spells becomes unpredictable. Effects may weaken, strengthen, or change entirely depending on the environment.
+<br>
+Repeated use of magic in the same location can permanently alter that area.
+<br>
+The Mire also stores emotional and mental residue. Strong feelings such as fear, grief, or anger can imprint onto the land and later manifest as sensory experiences.
+<br>
+This is why some regions feel hostile despite having no visible threat.
+</p>
+<hr>
+<h2>THE SINKING</h2>
+<p>
+The Sinking is the process by which individuals begin to lose their separation from the Mire.
+<br>
+It occurs in stages.
+<br>
+Stage one involves mild disorientation. Time perception shifts, and memory recall becomes inconsistent.
+<br>
+Stage two introduces auditory phenomena. Individuals begin hearing whispers or distant voices. These voices often use familiar tones.
+<br>
+Stage three affects identity. Thoughts become less distinct, and emotional responses dull or blur.
+<br>
+Stage four results in physical change. Subtle mutations begin to appear, often without pain.
+<br>
+Stage five is unknown. Those who reach it do not return as themselves.
+</p>
+<hr>
+<h2>THE MIREBORNE ELVES</h2>
+<p>
+The primary inhabitants of the Dread Mire are the Mireborne Elves.
+<br>
+They are descendants of elves who were present during the early formation of the Mire. Over generations, they adapted to the environment rather than fleeing from it.
+<br>
+Their transformation is gradual and ongoing.
+<br>
+They retain elven features but show signs of environmental integration. Their skin often carries a damp or muted tone. Their eyes reflect light unnaturally. Their movements are quieter than expected.
+<br>
+They are not resistant to the Mire.
+<br>
+They are synchronized with it.</p>
+<hr>
+<h2>MIREBORNE SOCIETY</h2>
+<p>
+Mireborne society is not fixed. Settlements shift location over time, either intentionally or as a response to environmental changes.
+<br>
+They do not build permanent cities. Instead, they construct adaptable structures using root systems, elevated platforms, and natural formations.
+<br>
+Leadership is not centralized.
+<br>
+The Veil Speakers act as interpreters of the Mire’s will. They guide decisions during major events such as Churn cycles.
+<br>
+The Rootbound serve as living memory. These individuals have existed in the Mire long enough that their bodies have begun merging with the environment. They cannot move, but they retain knowledge spanning generations.
+<br>
+Hunters and guides operate independently but are respected for their ability to navigate and survive.
+</p>
+<hr>
+<h2>BELIEF SYSTEM</h2>
+<p>
+The Mireborne do not worship a traditional deity.
+<br>
+Their belief is centered on the concept of continuity.
+<br>
+They believe nothing truly ends within the Mire. Everything becomes something else.
+<br>
+Death is not feared. Dissolution is accepted as a transition rather than an end.
+<br>
+They do not resist change.
+<br>
+They consider resistance to be the cause of suffering.
+</p>
+<hr>
+<h2>RELATIONSHIP WITH THE MIRE</h2>
+<p>
+The Mireborne can sense changes in the environment before they occur.
+<br>
+They can navigate without landmarks and are rarely disoriented by the shifting terrain.
+<br>
+Some individuals develop the ability to influence minor aspects of the Mire, such as guiding fog, calming creatures, or stabilizing small areas of ground.
+<br>
+These abilities are not taught.
+<br>
+They emerge over time.
+</p>
+<hr>
+<h2>OUTSIDERS</h2>
+<p>
+Outsiders who enter the Mire are immediately noticeable.
+<br>
+The environment reacts differently to them.
+<br>
+Creatures become more active. Paths become less stable. The Sinking begins more rapidly.
+<br>
+Some Mireborne will guide outsiders.
+<br>
+Others will observe.
+<br>
+A few will deliberately mislead.
+</p>
+<hr>
+<h2>THE FORGOTTEN ONES</h2>
+<p>
+There are entities within the Mire that do not behave like normal creatures.
+<br>
+They are often seen at a distance, standing partially submerged in water or obscured by fog.
+<br>
+They do not move when observed directly.
+<br>
+They mimic voices.
+<br>
+Their origin is unknown.
+<br>
+Some believe they are individuals who completed the final stage of the Sinking.
+<br>
+Others believe they are something the Mire created independently.
+</p>
+<hr>
+<h2>THE MIRE AND RA’KA’TUL</h2>
+<p>
+The Empire does not control the Mire.
+<br>
+It interacts with it cautiously.
+<br>
+Resources extracted from the Mire are valuable but dangerous. Materials often retain unstable properties.
+<br>
+The Empire sends controlled expeditions, but losses are expected.
+<br>
+Even the strongest forces do not remain long.
+</p>
+<hr>
+<h2>THE MIRE DURING THE CHURN</h2>
+<p>
+During a Ley Pulse, the Mire becomes highly active.
+<br>
+Water levels rise unpredictably. Terrain shifts more aggressively. Creatures emerge in greater numbers.
+<br>
+The whispers become clear and structured.
+<br>
+Mireborne activity increases. Rituals are performed to maintain balance or interpret the changes.
+<br>
+New entities sometimes appear during these periods.
+<br>
+They are not born.
+<br>
+They are formed.</p>
+<hr>
+<h2>FINAL UNDERSTANDING</h2>
+<p>
+The Dread Mire is not a place to conquer or cleanse.
+<br>
+It is a place that reflects what enters it.
+<br>
+Those who fear it will see horror.
+<br>
+Those who resist it will break.
+<br>
+Those who accept it will change.
+<br>
+And those who remain long enough…
+<br>
+Will no longer remember what they were before.
+</p>
+"
+     data-link="the-dread-mire-characters.html"
+     data-sound="We-Were-Not-Forgotten.mp3"
+     data-img="https://s13.gifyu.com/images/bmuMW.png"
+     data-title="Characters in this Location"
+     data-characters="No characters have appeared at this location.">
+
+    <div class="hover-box">The Dread Mire
+    <p>0 Characters</p>
+      </div>
+</div>
+
+
+    <div class="marker2" style="top:36%; left:44%;" 
+         data-name="Lothlo" 
+         data-sound="Hymn-of-the-Unnamed-Light.mp3"
+         data-link="lothlo-characters.html"
+         data-desc="Temple of Viraxis.<br><br>
+         <p>Viaraxis is prayed to by Eladoria. The Ra'Ka'Tul Empire remains tentative about her existence — though their warmongering and unending conquests have angered her, she has not claimed any divine retribution. Not yet.
+          <br><br>
+She doesn't shout. She never had to. She is woven into the world itself — into the Scar's quiet glow, into the harvest that comes back fuller than the soil should allow, into the instinct that tells a lost traveler to turn back before it's too late. Eladoirians don't pray to her to ask for things. They pray to become still enough to hear what she's already saying.
+<br><br>
+She has no single face. A star-eyed woman for navigators. Golden light walking the furrows for farmers. Just a warmth at the back of the neck for those alone in the dark. Something too vast for one image — so she uses many.
+<br><br>
+Her servants, the Readers, are not appointed. They are recognized. Dreams that arrive before events do. Intuitions that prove right too many times. They sit with the dying, interpret the stars for harvests and wars, and keep the records of every prophecy ever spoken in her name. There is no unified Church — only regional cults that agree on the essentials and argue about everything else.
+<br><br>
+The Scar of Sundering is where she is closest to the world. Her breath in its calm glow. Her voice in the songs it throws during storms. And when the weight of accumulated offenses becomes too great — conquest, spilled blood, prayers ignored — something old and furious crawls out of it.
+</p>
+<hr>
+<h2>The Place</h2>
+<p>
+Lothlo sits at the western edge of the Scar of Sundering — close enough that on calm nights, the Scar's glow lights the stone corridors without a single torch. Close enough that when storms roll in and the Scar begins to sing, every Reader in the complex stops what they are doing and listens.
+<br><br>
+It was built here on purpose. The founders understood that if Viaraxis is closest to the world at the Scar, then this is where her whispers are loudest, where a Reader can hear the clearest. The risk — the occasional thing that crawls out, the wild surges of mana during unstable periods — was considered acceptable. More than acceptable. Expected. You do not come to Lothlo looking for comfort. You come looking for clarity.
+<br><br>
+The complex rises from natural pale stone — columns of gold-veined marble open to the sky, wide archways that let clouds drift through during storms, a great central dome with no ceiling above it. Just open air. The image is deliberate. Viaraxis cannot be contained. Neither can her house.
+<br><br>
+Beneath the temple, a tunnel opens onto an underground river with a boat. Follow it long enough and it finds the sea — not far from where the Abyss of elyssara  and elyssor tower birthmarks meet the water. It is used for the dead.
+<br>
+When someone dies at Lothlo — a Reader at the end of a long life, a pilgrim who did not survive what brought them here, an adventurer who arrived too broken and ran out of time — they are placed in the boat and sent down the river in silence. No ceremony. No words. The current carries them toward the sea, toward the Abyss, toward Elyssara's arms. It is considered the most honest farewell Lothlo can offer — returning what was borrowed to the place where all things are received.
+<br>
+Most residents have made peace with this. The sound of water moving beneath their feet, faint through the stone floors, is simply part of living here.
+</p>
+<hr>
+<h2>The Atmosphere</h2>
+<p>Lothlo operates on its own clock. Eladoria — its roads, its politics, its noise — feels very far away the moment you pass through the outer gate. People speak in measured tones here, not because they are required to but because the place seems to ask it. The stone carries sound strangely this close to the Fracture. Some words echo longer than they should. Others disappear before they reach the person standing next to you.
+<br><br>
+About a hundred people live here permanently. Readers at every stage of their practice, novices learning to separate vision from noise, and the support community that keeps everything running — scribes, cooks, archivists, a handful of quiet guards at the outer gates whose job is mostly to welcome pilgrims rather than stop threats.
+<br>
+Pilgrims come and go. Adventurers pass through to resupply or rest. The temple turns no one away. It offers a room, a meal, and as much conversation as wanted. What it does not offer is speed. Lothlo does not rush. If you arrived with urgent questions, you will learn to sit with them first.
+<br><br>
+The children change the texture of the place in a way that is hard to name. They appear in doorways, disappear around corners, sit in the archives when they are not supposed to. Some were brought by families who recognized the signs early — that particular stillness, the tendency to stop mid-sentence and listen to something no one else hears. Others are orphans with no family at all, absorbed into the community the way Lothlo absorbs most things — quietly, without ceremony, as if they had always been there. Not all of them develop into Readers. Some simply grow up here and leave when they are ready. Others stay. The community makes room either way.
+<br>
+<strong>The Orphans</strong>
+Some children live at Lothlo. Orphans, mostly, or children whose families brought them when they began showing signs — that particular stillness, that tendency to stop mid-sentence and listen to something no one else can hear. They are recognized, brought in, and given a place.
+<br>
+Not all of them develop into Readers. Some simply grow up here, learn what the temple teaches, and eventually leave to build a life outside. Others stay. The community absorbs them naturally either way.
+<br>
+They are taught, fed, and kept. They are kept well away from adventurers.
+</p>"
+         data-img="https://s13.gifyu.com/images/bmuMX.png"
+         data-title="Characters in this Location"
+         data-characters="No characters have appeared at this location.">
+      <div class="hover-box">Lothlo
+        <p>0 Characters</p>
+      </div>
+        </div>
+
+
+    <div class="marker3" style="top:23%; left:31%;"
+         data-name="Beluar" 
+         data-sound="When-I-Was-Young.mp3"
+         data-link="beluar-characters.html"
+         data-desc="<p>Beluar, the glittering crown jewel of elven stability.
+
+Country elf Nobles and wealthy human merchants send prospective sons to the capital to visit the court of the king and the queen mother. They call it the “bridal shop of Eladoria”. The human merchant families get to marry up, the elvish nobility of the court get to bring their prestigious but cash poor families, new influxes of wealth. At the center is the half elf king, a bachelor at 80 but looks early 30’s at most. (This could give people the chance to make romance bots). Over his shoulder is the stern visage of the queen mother. She has held an iron grip on court politics for over a century, being an elf it’s likely your grandchildren will die of old age before she relinquish her power behind the throne.
+<br><br>
+In the streets outside the palace, beautiful mansions of ancient elven style decorate the streets with gardens of fruit trees in bloom year round in secret courtyards nestled hidden behind high walls. Aqueducts bring water into the city from mountains far to feed the many fountains and bath houses of the city. When one walks the streets even at the lower districts like the harbor or the human quarter, the rushing underground river of the city sewer can be heard  beneath the white granite stones of the streets if one carefully listened for it. The street lamps of the city need no pitch as they are illuminated with rare magical stones mined from the trench’s of the scar. that give a magical blue glow. Although some older residents claim the lights give maladies
+<br><br>
+The city built upon the now buried remains an ancient human acropolis overlooking the sea is one of the oldest continuously inhabited settlements in not just Eladoria but the entire continent. Far enough to the west from the cataclysmic events that birthed the Scar of Sundering, Belura has one of the only recorded eye witness accounts in its libraries as many other ancient settlements closer to the scar were destroyed in its birth. Eladorian scholars of the Belura University regularly go out digging in fields using old letters and notes that hint at ancient settlements under now lush and fertile farm lands.
+<br><br>
+The Bridal Shop of Eladoria. Anyone who is anyone when looking for a match for their prospective sons often send them to the royal court. The prestige and social climbing is expected but many a lord or merchant king first met their wives in the halls of the blue moon palace (so named for the large central blue dome in mimicking the temple dome on the acropolis above the palace. Under the dome, a mosaic in blue and silver tinted tiles depict the night sky and especially that of the moon in the center.)
+<br><br>
+In recent years as humans have through their industrially climbing the social ladder gained entry to the blue moon palaces inner circles, elven families have found it popular to take human spouses. Leading to a population explosion of the half elf community in the city. To keep the alliances between elven and human families strong (to counter the unfortunate mayfly life span of humans) elven lords and lady’s have taken to a practice called “nepotism” named after the practice of ladies of the court, when their human groom died, to marry their human nephews, although the reverse gender is just as common. The elves of the court have found this is the best way to keep the non nobility of humanity loyal through the generations.
+<br><br>
+The strictly Elf Nobility of the kingdom although stable are deeply unimaginative with their sources of money and often over the course of centuries have watched as income from human tenets has lessened from (the virtually unknown and unnoticed) trend of inflation. This has led many a noble family to become land rich but cash poor. As international trade has slowly begun to reestablish itself after the creation of the scar ripped the continent in half, many human freemen in th cities (often descendants of escaped peasants) have created merchant guilds and the most successful entire merchant houses. The Downie family control much of the textile trade, the Remei family the wine trade. Du Blois owned several royal chartered mines. And the Le Fever family held a stranglehold on ship manufacture for anything larger than a fishing boat. These families and many others have been unofficially adopted into a wider clan structure under elven families.
+<br><br>
+The king of Eladoria is the 80 year old Robair. Around middle age for a half elf, he has still not married becoming the most prized bachelor in the kingdom. In his youth he was an avid knight but has spent the last several decades devoting himself to the arts and architecture, most importantly expanding the infrastructure of the city as the population increases. He is rarely at court itself, often buried in his work, but he never misses an opportunity to fund feasts and celebrations for the court. Many a maiden has schemed of being the one to charm him from his duties into her bed chamber. Under all this however is the shadow of the dowager queen Adelaide. She was the daughter of a previous king. When he died the throne passed to her brother, then after his tragic death fighting a rare incursion from the scar by monsterus beasts, to her son Robair as the throne is quasi-Salic. As he was a newborn the throne was placed in the hands of a regency council with her and her husband at the center. Despite never in the history of the kingdom had a human sat upon the throne, Robair’s father attempted a palace coup to name himself king. Adelaide herself led the counter coup and had him murdered by strangulation with a silk rope so his impure blood wouldn’t taint the palace floor. In securing the throne for her son she retroactively gave herself the title of dowager queen. Any woman that wishes to marry her son must get past her. The strong ones leave the palace in tears, the weak… at least one nobles daughter had to be shipped to a sanitarium. She has not been heard from since.</p>""
+         data-img="https://s13.gifyu.com/images/bmcHK.png"
+         data-title="Characters in this Location"
+         data-characters="No characters have appeared at this location.">
+       <div class="hover-box">Beluar
+        <p>0 Characters</p>
+       </div>
+      </div>
+
+    <div class="marker4" style="top:50%; left:36%;"
+         data-name="Rhangyl Grove" 
+         data-sound="Where-the-Gods-Once-Walked.mp3"
+         data-link="rhangyl-grove-characters.html"
+         data-desc="
+         <h2>The Walking Age:</h2>
+<p>No mortal recorded the first flowering of Rhangyl Grove, because no mortal was there to see it. What the oldest druidic texts agree on is this: the Grove did not grow. It arrived — fully formed, impossibly dense, humming with a warmth that had no source. The trees at its heart are wider than city blocks and older than the oldest city. Their roots do not merely drink from the earth. They hold something down, or perhaps hold something in.
+<br>
+The gods walked Evelia most visibly in the age before civilization had a name for what they were. They moved through the world like weather — vast, indifferent to borders, leaving change the way storms leave mud. Most of what they touched recovered, shifted, or forgot. Rhangyl Grove did not forget.
+<br>
+Each step they took through what is now the Grove pressed something permanent into the soil — not magic in the Viaraxis sense, not structured or studied, but presence. A resonance. The trees that grew in those footprints grew wrong by ordinary measure: bark that hums in minor keys at dusk, roots that surface in spiral patterns, flowers that bloom in sequences too deliberate to be natural, as though counting something. Druids call these the Stepped Trees. They are the oldest living things on Evelia, and they do not behave like trees.
+<br>
+The music the gods left behind is not metaphor. On still nights, particularly near the Grove's interior, visitors report hearing melody with no instrument and no source — not birdsong, not wind, but composed sound, patient and slow, like a piece being performed for an audience that has not yet arrived. The druids call this the Underlaying. They believe it is unfinished.
+<br><br></p>
+<hr>
+<h2>The Inhabitants:</h2>
+<p><strong>The Druids of the Pale Root</strong>
+The druidic order that tends Rhangyl Grove does not call itself a religious order. They call themselves listeners. Their entire practice is built around the belief that the Grove is still speaking — that the gods did not finish what they came to do, and that careful, patient attention is the only appropriate response to an ongoing divine act.
+<br>
+They do not worship the gods of the Grove. They observe them. This distinction matters enormously to the Pale Root, and is the source of most friction with outside religious institutions. They keep no altars, offer no prayers, perform no sacrifice. They keep records. Meticulous, generations-deep records of the Underlaying's melodies, the flowering sequences of the Stepped Trees, the behavior of the Grove during political upheaval beyond its borders. They believe all of it is data. They believe the gods are still here, still doing something, and they intend to understand what.
+<br>
+The Pale Root are not passive. They are the Grove's de facto diplomats, boundary-keepers, and when necessary, its enforcers. They are the ones who communicate the unspoken rule to any sovereign foolish enough to need it communicated. They do this quietly, without threat, without army. Somehow this is more effective than either.
+<br>
+Their leader carries no title of rank. They are called the First Listener — not because they lead, but because they have demonstrated the greatest capacity to hear what the Grove is saying. The current First Listener, a woman named Orveth Caln, has held the position for thirty-one years. She has not aged visibly in the last twelve. The Pale Root have not commented on this.
+<br><br></p>
+<hr>
+<h2>The Fae Courts of the Interior:</h2>
+<p>The fae of Rhangyl Grove are not the fae found elsewhere on Evelia. Elsewhere, fae are mercurial, politically complex, obsessed with debt and bargain. The fae of the Interior — as the Grove's deep heart is called — are older in bearing, slower in speech, and largely uninterested in the affairs of the outside world. They do not trade. They do not make deals. They attend to the Grove the way one attends to something sacred without fully understanding why.
+<br>
+They are organized into two loose courts, not by politics but by temperament:
+<br>
+<strong>The Canopy Court</strong> moves through the upper reaches of the Grove — the high branches, the places where sunlight still reaches. They are social by fae standards, occasionally willing to interact with druidic scholars and, very rarely, outside visitors. They are the ones most likely to be spotted, to leave gifts, to play music that mortals can almost follow. They are also the ones who serve, quietly and without announcement, as the Grove's early warning system. When the Canopy Court goes silent, the Pale Root begin preparing.
+<br>
+<strong>The Root Court</strong> does not interact with mortals. They are rarely seen, and when they are seen, it is usually considered a bad sign — not because they are malevolent, but because the things that draw them to the surface tend to be. They tend to the Stepped Trees directly, pressing their hands to the bark for hours at a time, listening to something no mortal instrument can detect. Some druidic scholars believe the Root Court is not separate from the Grove at all — that they are, in some sense, of it, extensions of the divine residue rather than creatures living within it.
+<br><br></p>
+<hr>
+<h2>The Nymphs of the Silver Thread:</h2>
+<p>Running through Rhangyl Grove is a waterway with no name on any map — the druids call it the Silver Thread, and outside cartographers who have attempted to chart it report that it moves. Not floods, not shifts seasonally. Moves. Its course changes in ways that suggest intent.
+<br>
+The nymphs bound to the Silver Thread are its memory. They carry, encoded in their nature, the full history of everything the water has touched — which, given the waterway's apparent mobility, is a significant portion of the Grove's interior. They do not speak this history freely. They speak it in song, involuntarily, when they are near events that rhyme with something they carry. A delegation from Ra'Ka'Tul once camped near the Thread's bank. The nymphs sang for six hours without stopping. The delegation left before morning and never published an account of what they heard.
+<br>
+The nymphs are the most direct evidence that the gods never truly left. Their songs contain melodic phrases that match, precisely, sequences from the Underlaying — music that no living creature composed, preserved in beings that have no reason to have learned it. The Pale Root's records note this match was discovered two hundred years ago. They have not yet determined what it means. They are still listening.
+<br><br></p>
+<hr>
+<h2>The Unspoken Rule:</h2>
+<p>The agreement between Ra'Ka'Tul and Eladoria regarding Rhangyl Grove was never written, never formally negotiated, never witnessed by any neutral party. It simply exists, the way the Grove itself simply exists — as a fact too large and too old to require documentation.
+<br>
+The practical origin is mundane enough: both powers border the Grove, both have attempted incursion at various points in history, and both have retreated from those incursions with their forces inexplicably demoralized, disoriented, or simply unwilling to continue. No violence was done to them. The Grove did not fight back in any legible sense. People simply stopped wanting to be there in that way. Commanders reported that their soldiers were not afraid — they were ashamed. As though the Grove had reminded them of something about themselves they preferred not to examine.
+<br>
+After enough of these retreats, the two powers arrived independently at the same conclusion: the Grove is not conquerable, not because it has defenders, but because it has weight. To push against it is to push against something that will not push back — that will simply make you feel the full measure of what you are doing until you stop.
+<br>
+The unspoken rule, then, is less an agreement and more an admission. Neither power claims the Grove. Neither power will say why, in formal terms. The Pale Root facilitates this silence carefully, maintaining cordial relations with both courts, offering just enough political utility — access to botanical knowledge, to the Silver Thread's water, to the Underlaying's calendar of growing seasons — to make the Grove worth protecting rather than merely worth leaving alone.
+<br>
+It is a balance. It has held for a long time. Orveth Caln's records, which she has not shared with anyone, note that the Underlaying's melody has changed in the last three years — a new phrase, repeated, that does not appear anywhere in the two-century archive. She is not yet certain whether it is a warning or an invitation.
+<br><br>
+The gods never truly left Rhangyl Grove. The more pressing question — the one the Pale Root will not yet speak aloud — is whether they are waking up.</p>"
+         data-img="https://s13.gifyu.com/images/bmc3b.png"
+         data-title="Characters in this Location"
+         data-characters="No characters have appeared at this location.">
+      <div class="hover-box">Rhangyl Grove
+        <p>1 Character</p>
+      </div>
+    </div>
+
+     <div class="marker5" style="top:45%; left:50%;" 
+         data-name="The Jagged Maw" 
+         data-link="the-jagged-maw-characters.html"
+         data-sound="i-am-the-maw.mp3"
+         data-desc="<p>The Maw, once a large, natural, and sprawling forest of nature, is now a conduit for the Other. It is one of the few ways through the Scar, as its trees permeate through from one side to the other. However, its has also become infused with the energies of the scar, and to escape unblemished is a fate none have succeeded in obtaining. Quite simply it is maelstrom of energy hidden by the boughs of the trees, where the winds are monsters and the very ground beneath your feet turns into your greatest enemy.
+         <br><br>
+Across the fringes are those who still believe in the sanctity of nature. Of balance. Of harmony. Those untainted by the knowledge of what lies deep within the soul of the Scar, and those without the blessings of that dreadful song. In triplicet it goes- to beware the singing of the wind that will draw you deeper past its lips. Beware the singing of the trees that pulls you past its teeth. Pray if you hear the singing of the earth, for only gods and monsters will hear you now.
+<br><br>
+Within the midlayer are those who were once human. Spit out by the chaotic essence either as unworthy, or some other nefarious reason. Those of strong will may yet turn back, however an exposed back oft invites knives, sickles, and claws to leave lasting scars even amongst those who return. And yet, the changed humans and changed beasts are exactly that- once things that now only WERE. Still, there exist a few things that never have been, and should not be yet ARE. Those that belong not of this world but another who feed on magic and the flesh of those who are whole. Perhaps even the minds of prey fall victim to the insatiable hunger of those deprived of the energy of the Center.
+<br><br>
+The heart of the Maw, a place that scales DOWN into the Scar, the underbrush thick and the air humid with a sense of dread and ominous foreboding. Every step feels wrong, like walking through a mirror land where nothing is as it should be. The trees have teeth. The ground has teeth. Everything eats, everything is consumed. There are paths, yes. Those made by those who have allowed parts of themselves be devoured and accepted the great change and the energy it grants. What will you give the it? Perhaps your sanity? Your ability to love? The hand of the greatest archer of the voice of the greatest songstress? Yet beware that for each thing taken, something is created. And, no matter where you go, it will KNOW. It will haunt you. And it will seek you out to complete itself. For the Maw is not merely teeth, but the venom it leaves behind in your very soul. Content to watch, to wait, and to drag you back when you have become broken like everything else within.
+  </p>"
+         data-img="https://s13.gifyu.com/images/bmch3.png"
+         data-title="Characters in this Location"
+         data-characters="No characters have appeared at this location.">
+      <div class="hover-box">The Jagged Maw
+        <p>0 Characters</p>
+      </div>
+        </div>
+
+         <div class="marker6" style="top:25%; left:65%;" 
+         data-name="Thang-Tur" 
+         data-link="thang-tur-characters.html"
+         data-sound="The-Iron-That-Forgot-Why-It-Stands.mp3"
+         data-desc="<p>
+The two sons of the royal line, embodiments of opposing paths, mirror the city’s duality. One, a monster of ambition and power, the other, a secret spark of restraint and faith, hidden from the corrupted gaze of the world. The streets themselves seem aware, alive with the heat and breath of the dragon, as if the city itself senses the choices of those who walk its blackened stones.
+<br>
+Thang-Tur is feared across the continent. Its expansion is relentless; its defenses, absolute. The Sicatrise Mountains alone halt its advance westward, jagged sentinels dividing realms. Travelers and guides in the border towns feel the heat and hum from afar, and they know that the dragon’s pulse will reach even their streets when the city stirs.
+<br>
+And yet, beneath all the fear and corruption, traces of the original purpose remain. The decisions of the first settlers, their refusal to yield, the quiet determination to defend what mattered—they echo still, hidden in whispers, in secret glances, in the veins of those who follow Zaryth’s path. Ordinary people, rising from ordinary loss, built a city both home and weapon, beautiful and terrifying, alive in ways the world can only imagine.
+<br>
+And beneath it all, Thorgalax waits. Patient. Bound. Watching. Waiting. Every pulse of molten blood in the veins of the royal family, every hiss of steam, every subtle tremor beneath the streets reminds the world: power without purpose is a cage—and cages, no matter how strong, can awaken.
+</p>
+<hr>
+<h2>Birthmark of Zaryth — The Crater Bastion & Thang-Tur</h2>
+The crater came first. Long before Thang-Tur, long before the empire, the basin existed — a natural formation of volcanic rock, defensible walls, geothermal warmth. The first settlers did not choose it strategically. They chose it the way exhausted people choose shelter : it was there, it was solid, and they needed somewhere that would hold.
+<br>
+They built inside it because Zaryth's birthmark was already in the stone. They did not know this. They felt it as the particular stubbornness of the place — the way the walls seemed to hold better than they should, the way people who settled there seemed to find it harder to leave than they expected. The crater had been marked since the first mortal refused to give up. That refusal had soaked into the rock over centuries.
+<br>
+Then the Fracture opened.
+<br>
+The first Churns were distant — felt as tremors, as strange weather, as the creatures that wandered further than they should. But one Churn, centuries after the settlers had built their first walls and called the place home, sent something through that was not a wandering beast. It came with purpose, or what passed for purpose in a thing that had no name. It struck the settlement without warning and did not stop.
+<br>
+The siege lasted weeks. The creature was not destroyable by any means the settlers possessed. Every time they drove it back, it returned. Every time they thought it had retreated, it came again from a different direction. They lost people. They lost walls. They rebuilt the walls. They buried the people and stood up again because there was nothing else to do.
+<br>
+Zaryth watched. He does not intervene for those who merely struggle. Struggle is ordinary. What he waits for is something rarer — the moment when a mortal has every reason to stop and does not. Not from stubbornness or pride or desperation, but from the deep, quiet decision that what they are protecting is worth more than their own survival.
+<br>
+He saw it in them. After weeks of front lines, of dead friends and broken stone and impossible odds — he saw that they were not fighting to win. They were fighting because behind them were children and warmth and the thing they had built together, and they could not bring themselves to let that go.
+<br>
+He extended his hand.
+<br>
+The creature was driven into the deepest point of the basin and sealed there — not destroyed, because some things cannot be destroyed, but held. Contained by the same force that had always been in the rock, now made active and deliberate. The condition was never spoken aloud to the settlers. It did not need to be. They already knew it in their bones, because they had been living it for weeks :
+<br>
+Never forget what you are standing for. Not the walls. Not the empire. Not the victory. The people behind you. The life worth protecting. The moment Ra'Ka'Tul fights only for power and forgets what it means to rise for something that matters — the prison weakens.
+<br>
+The settlers became Ra'Ka'Tul. The crater became Thang-Tur. The basin walls became the Outer Crag. The deepest point became the Maw of the Emperor, engineered and industrialized by generations who inherited the story in fragments and built a city around what they only half understood.
+<br>
+The hum is real. Citizens feel it shift and call it the mood of the Emperor. The high command knows better — it is the tension in Zaryth's hold, readable if you know what you are reading. Steady means the city is what it was meant to be. A deeper, slower pulse means something in the collective spirit has gone slack.
+<br>
+The cathedral stands directly above the seal. The statue — one knee down, one arm extended — is a reminder built by an Emperor three centuries ago who understood that the city needed to see it every day. The stained glass is not sentiment. It is instruction. Not heroes. Not conquerors. Ordinary people rising from ordinary loss.
+<br>
+This is what holds the prison. Not armies. This.
+ "
+         data-img="https://s13.gifyu.com/images/bmchH.png"
+         data-title="Characters in this Location"
+         data-characters="No characters have appeared at this location.">
+      <div class="hover-box">Thang-Tur
+       <p>1 Character</p>
+      </div>
+        </div>
+
+      <div class="marker7" style="top:50%; left:67%;" 
+  data-name="Feralyn Hold" 
+  data-sound="feralyn-hold.mp3"
+  data-link="feralyn-hold-characters.html"
+  data-desc='
+  <p><strong>Feralyn Hold</strong> is a hidden settlement of beastkin and animal hybrids located along the mist-covered border between The Jagged Maw and The Dread Mire.
+<br><br>
+Built from thick timber palisades, stone watchtowers, and massive tree roots shaped by druidic magic, Feralyn Hold is more fortress than village. Outsiders rarely find it unless they are brought there deliberately. The settlement was founded generations ago by hybrids and outcasts who could not find a place within either Eladoria or Ra’Ka’Tul.
+<br><br>
+The people of Feralyn Hold call themselves the Kin of Fang and Feather—a community of wolfkin, foxkin, bearfolk, avian hybrids, feline hybrids, and stranger bloodlines touched by the wild magic leaking from the Scar of Sundering. Some were born this way, others changed by exposure to the volatile magic of the surrounding lands.
+<br><br>
+Life in the Hold is harsh but communal. Strength is respected, but loyalty to the pack is law. Hunters roam the Maw’s dangerous forests, while scouts watch the misty edges of the Mire for creatures that wander too close. Unlike the barbarians of the Jagged Maw, the Kin prefer survival and secrecy over conquest.
+<br><br>
+Both empires treat the settlement with caution.
+<br><br>
+- Eladoria views them as unfortunate victims of wild magic—something to pity, but also something unpredictable.
+- Ra’Ka’Tul respects their strength but considers them outside the Empire’s hierarchy.
+<br><br>
+Because of this, Feralyn Hold remains largely independent, surviving through trade, stealth, and their deep knowledge of the wild lands.
+<br><br>
+Some believe the hybrids carry fragments of the Scar’s magic in their blood, making them unusually resistant to the Churn during the Ley Pulse. If true, it would explain why the Hold has survived every century while entire villages elsewhere vanished.
+  </p>
+  <hr>
+  <h3>Beliefs</h3>
+  <p>The Kin of Fang and Feather do not worship gods. They believe the Scar of Sundering lives within them as a shared ancestral force.</p>
+  <h3>Totems</h3>
+  <p>
+  Moon Fang (Loyalty) • Silent Prowler (Precision) • Sky Talon (Freedom) • 
+  Deep Root (Endurance) • Ember Claw (Fury) • Veil Whisper (Change)
+  </p>
+  <hr>
+  <h3>Landmarks</h3>
+  <p>Moonfang Gate • Root Hall • Hunter Paths</p>
+  <hr>
+  <h3>Key Figures</h3>
+  <p>
+  Vaerok Fenraeth (Warden) • Nyxira Vahl (Scout) • Aethryss Kaeval (Skywatcher) • 
+  Brumgar Thornehide (Guardian) • Rhyzek Vaelrune (Warbound) • 
+  Sael’vyn Noctra (Wanderer)
+  </p>
+  '
+  data-img="https://s13.gifyu.com/images/bmcho.png"
+  data-title="Characters in this Location"
+  data-characters="No characters have appeared at this location.">
+
+  <div class="hover-box">Feralyn Hold
+    <p>1 Character</p>
+  </div>
+</div>
+
+            <div class="marker8" style="top:33%; left:59%;"
+         data-name="Chorla"
+         data-link="chorla-characters.html"
+         data-sound="Remember-Chorla.mp3"
+         data-desc="<h2>Folklore:</h2>
+The Chorla Ruins are from a small country of the distant past. Their language dead, meaningless hieroglyphics to all but specialist scholars. The name of the place in modern memory only because of folklore stories told as a warning around campfires. 
+<br>
+Don't build near The Scar of Sundering. It is foolish to try and study the Churn up close. Remember the hubris of Chorla.
+<hr>
+<h2>What is found there now:</h2>
+The buildings are in a variety of states. Some reduced to foundations and partial walls, mostly rubble. Others practically pristine, tempting for looters or those who need shelter... but it is unwise to linger in old Chorla.
+<br>
+Distortions, that's what those who have visited call them. Like ghosts. Or echoes of the past. Insubstantial. Most don't react. If one of the Distortions to react to you, run. FUCKING RUN DAMMIT!
+<hr>
+<h2>Architecture:</h2>
+Dark purple stone that absorbs sunlight to glow lavender in the darkness. Angular, gothic steeples and lines, arched doorways. Furniture, when present, is heavy carved wood that has withstood the test of time remarkably well; resists burning but burns for a long time when it catches similar to coal but better."
+         data-img="https://s13.gifyu.com/images/bm0XH.png"
+         data-title="Characters in this Location"
+         data-characters="No characters have appeared at this location.">
+       <div class="hover-box">Chorla
+        <p>0 Characters</p>
+       </div>
+      </div>
+
+  </div></div>
+
+<div class="mobile-view">
+
+  <div class="location-card">
+    <div class="card-content">
+      <img src="https://s13.gifyu.com/images/bmuMW.png">
+      <div class="text">
+        <h2>The Dread Mire</h2>
+        <p>The Dread Mire is not a place that was created in a single moment. It is the result of time, pressure, and unresolved magic slowly sinking into the land.<br>0 Characters</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="location-card">
+    <div class="card-content">
+      <img src="https://s13.gifyu.com/images/bmuMX.png">
+      <div class="text">
+        <h2>Lothlo</h2>
+        <p>Temple of Viraxis<br>0 Characters</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="location-card">
+    <div class="card-content">
+      <img src="https://s13.gifyu.com/images/bmcHK.png">
+      <div class="text">
+        <h2>Beluar</h2>
+        <p>The glittering crown jewel of elven stability<br>0 Characters</p>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="location-card">
+    <div class="card-content">
+      <img src="https://s13.gifyu.com/images/bmc3b.png">
+      <div class="text">
+        <h2>Rhangyl Grove</h2>
+        <p>A flowering land where the gods are said to have walked, leaving life and music in their wake. <br>1 Character</p>
+      </div>
+    </div>
+  </div>
+
+   <div class="location-card">
+    <div class="card-content">
+      <img src="https://s13.gifyu.com/images/bmch3.png">
+      <div class="text">
+        <h2>The Jagged Maw</h2>
+        <p>The Maw, once a large, natural, and sprawling forest of nature, is now a conduit for the Other. <br>0 Characters</p>
+      </div>
+    </div>
+  </div>
+
+   <div class="location-card">
+    <div class="card-content">
+      <img src="https://s13.gifyu.com/images/bmchH.png">
+      <div class="text">
+        <h2>Thang-Tur</h2>
+        <p>The city is a fortress-furnace-sanctuary, all in one. It is the physical manifestation of the Ra’Ka’Tul ethos: Order imposed through superior force, upon a world of inherent chaos.<br>1 Character</p>
+      </div>
+    </div>
+  </div>
+
+   <div class="location-card">
+    <div class="card-content">
+      <img src="https://s13.gifyu.com/images/bmcho.png">
+<data-link="feralyn-hold-characters.html"></data-link> 
+
+      <div class="text">
+        <h2>Feralyn Hold</h2>
+        <p>A hidden settlement of beastkin and animal hybrids.<br>1 Character</p>
+      </div>
+    </div>
+  </div>
+
+
+     <div class="location-card">
+    <div class="card-content">
+      <img src="https://s13.gifyu.com/images/bm0XH.png">
+      <div class="text">
+        <h2>Chorla</h2>
+        <p>Located in Ra' Ka' Tul, too close to The Scar of Sundering to be safe to visit.<br>0 Characters</p>
+      </div>
+    </div>
+  </div>
+<!-- last location card ends here -->
+
+</div> <!-- ← closes .mobile-view -->
+
+<!-- Tooltip lives OUTSIDE mobile-view so it can overlay everything -->
+<div class="tooltip" id="tooltip"></div>
+<div id="hoverTooltip" class="hover-tooltip"></div>
+
+<footer>
+  © 2026 The Brass Foundry | World Woven by Volara and The Brass Foundry Creators
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

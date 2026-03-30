@@ -1,0 +1,744 @@
+/* ============================================================
+   FONTS
+============================================================ */
+.fleur-de-leah-regular {
+  font-family: "Fleur De Leah", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* ============================================================
+   RESET & BASE
+============================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Garamond', serif;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+p {
+  color: #e8d8b0;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #bfa060;
+  margin: 15px 0;
+}
+
+/* ============================================================
+   LOADER
+============================================================ */
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  color: gold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  text-align: center;
+  transition: opacity 0.5s ease;
+  cursor: pointer;
+}
+
+body.loading {
+  overflow: hidden;
+}
+
+.loader-content {
+  font-family: "Fleur De Leah", cursive;
+}
+
+#loader h1 {
+  font-family: "Fleur De Leah", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+#loader p {
+  opacity: 0.7;
+  margin-top: 10px;
+  font-family: "Fleur De Leah", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.click-text {
+  margin-top: 15px;
+  color: gold;
+  font-size: 1.2em;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%   { opacity: 0.4; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+#countdown {
+  font-size: 2.5em;
+  margin-top: 10px;
+  color: gold;
+  text-shadow: 0 0 10px gold;
+  font-family: "Fleur De Leah", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* ============================================================
+   HEADER
+============================================================ */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  z-index: 1000;
+}
+
+header .logo {
+  font-size: 1.8em;
+  color: gold;
+  font-family: "Fleur De Leah", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+  color: #f2e3b2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85em;
+}
+
+/* ============================================================
+   CORNER OVERLAYS — shared base
+============================================================ */
+.corner-overlay,
+.tbf-corner-overlay,
+.tbf-corner-overlay-right,
+.world-corner-overlay {
+  position: fixed;
+  width: 120px;
+  z-index: 1000;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: drop-shadow(0 0 10px gold);
+  cursor: pointer;
+}
+
+.corner-overlay:hover,
+.tbf-corner-overlay:hover,
+.tbf-corner-overlay-right:hover,
+.world-corner-overlay:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 20px gold);
+}
+
+/* Individual positions */
+.corner-overlay         { bottom: 6%; right: 17%; }
+.tbf-corner-overlay     { top: 5%;   left: 17%;   }
+.tbf-corner-overlay-right { top: 5%; right: 17%;  }
+.world-corner-overlay   { bottom: 6%; left: 17%;  }
+
+/* ============================================================
+   CORNER POPUPS
+============================================================ */
+.corner-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 4000;
+}
+
+.corner-popup.active {
+  display: flex;
+}
+
+.popup-inner {
+  background: #1a120b;
+  border: 2px solid #bfa060;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%;
+  color: #e8d8b0;
+  text-align: center;
+  position: relative;
+}
+
+.close-corner {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/* Gods popup — larger to fit iframe */
+.gods-popup {
+  width: 85vw;
+  max-width: 1000px;
+  height: 85vh;
+  padding: 10px;
+  overflow: hidden;
+}
+
+/* World info popup — scrollable */
+.world-popup {
+  max-height: 80vh;
+  overflow-y: auto;
+  text-align: left;
+}
+
+/* ============================================================
+   DIVIDER
+============================================================ */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 2rem auto;
+}
+
+.divider-line {
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, gold);
+}
+
+.divider-line.right {
+  background: linear-gradient(to left, transparent, gold);
+}
+
+.divider-star {
+  color: gold;
+}
+
+/* ============================================================
+   MAP
+============================================================ */
+.map-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.map-background {
+  width: 60%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================================
+   MARKERS — shared base
+============================================================ */
+.marker1, .marker2, .marker3, .marker4,
+.marker5, .marker6, .marker7, .marker8 {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 10px gold;
+}
+
+/* Individual marker images */
+.marker1 { background-image: url('https://s13.gifyu.com/images/bmuMW.png'); }
+.marker2 { background-image: url('https://s13.gifyu.com/images/bmuMX.png'); }
+.marker3 { background-image: url('https://s13.gifyu.com/images/bmcHK.png'); }
+.marker4 { background-image: url('https://s13.gifyu.com/images/bmc3b.png'); }
+.marker5 { background-image: url('https://s13.gifyu.com/images/bmch3.png'); }
+.marker6 { background-image: url('https://s13.gifyu.com/images/bmchH.png'); }
+.marker7 { background-image: url('https://s13.gifyu.com/images/bmcho.png'); }
+.marker8 { background-image: url('https://s13.gifyu.com/images/bm0XH.png'); }
+
+/* Float animations */
+@keyframes float {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
+}
+
+.marker1 { animation: float 2s   ease-in-out infinite; }
+.marker2 { animation: float 4s   ease-in-out infinite; }
+.marker3 { animation: float 3.5s ease-in-out infinite; }
+.marker4 { animation: float 4.5s ease-in-out infinite; }
+.marker5 { animation: float 3s   ease-in-out infinite; }
+.marker6 { animation: float 5s   ease-in-out infinite; }
+.marker7 { animation: float 3.5s ease-in-out infinite; }
+.marker8 { animation: float 2.5s ease-in-out infinite; }
+
+.marker1:hover, .marker2:hover, .marker3:hover, .marker4:hover,
+.marker5:hover, .marker6:hover, .marker7:hover, .marker8:hover {
+  transform: scale(1.5);
+  box-shadow: 0 0 20px gold;
+}
+
+/* ============================================================
+   HOVER TOOLTIP (map label on hover)
+============================================================ */
+.hover-box {
+  position: absolute;
+  bottom: -120%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: rgba(20, 15, 10, 0.95);
+  color: #e8d8b0;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #bfa060;
+  font-family: "Fleur De Leah", cursive;
+  font-size: 0.9em;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 10px rgba(191,160,96,0.5);
+  backdrop-filter: blur(4px);
+}
+
+.marker1:hover .hover-box,
+.marker2:hover .hover-box,
+.marker3:hover .hover-box,
+.marker4:hover .hover-box,
+.marker5:hover .hover-box,
+.marker6:hover .hover-box,
+.marker7:hover .hover-box,
+.marker8:hover .hover-box {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ============================================================
+   LOCATION POPUP TOOLTIP
+============================================================ */
+.tooltip {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 80vh;
+  max-height: 90vh;
+  background: #1a120b;
+  border: 2px solid #bfa060;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2000;
+  overflow: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.tooltip.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.popup-open::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 1500;
+}
+
+.tooltip .popup-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.image-container {
+  position: relative;
+  height: 250px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.image-container::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 140px;
+  background: linear-gradient(
+    to bottom,
+    rgba(26,18,11,0) 0%,
+    rgba(26,18,11,0.6) 60%,
+    #1a120b 100%
+  );
+  pointer-events: none;
+}
+
+.text-content {
+  flex: 1 1 auto;
+  overflow-y: scroll;
+  padding: 20px;
+  color: #e8d8b0;
+  line-height: 1.6;
+  min-height: 0;
+}
+
+.text-content::-webkit-scrollbar       { width: 6px; }
+.text-content::-webkit-scrollbar-track { background: #2a1d14; }
+.text-content::-webkit-scrollbar-thumb { background: #bfa060; border-radius: 10px; }
+.text-content::-webkit-scrollbar-thumb:hover { background: #d4b870; }
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  color: #3a2b1a;
+}
+.close-btn:hover { color: red; }
+
+/* ============================================================
+   POPUP TABS (Lore / Characters)
+============================================================ */
+.popup-tabs {
+  display: flex;
+  border-bottom: 1px solid #bfa060;
+  flex-shrink: 0;
+}
+
+.tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #9a7a40;
+  font-family: 'Garamond', serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 10px;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+
+.tab-btn.active {
+  color: gold;
+  background: rgba(191,160,96,0.08);
+  border-bottom: 2px solid gold;
+}
+
+.tab-btn:hover { color: #e8d8b0; }
+
+.tab-btn-locked {
+  opacity: 0.4;
+  cursor: not-allowed;
+  font-style: italic;
+}
+
+.tab-panel {
+  display: none;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.tab-panel.active {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-panel iframe {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.tab-panel .text-content {
+  flex: 1;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+/* ============================================================
+   MOBILE VIEW — location cards
+============================================================ */
+.mobile-view {
+  display: none;
+  width: auto;
+  padding: 80px 15px 60px;
+  background: #1a120b;
+  min-height: 100vh;
+}
+
+.map-wrapper {
+  display: block;
+}
+
+.location-card {
+  margin-bottom: 20px;
+}
+
+.card-content {
+  position: relative;
+  border: 1px solid #bfa060;
+  border-radius: 10px;
+  overflow: hidden;
+  min-height: 120px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.6);
+  display: flex;
+  align-items: flex-end;
+}
+
+.card-content img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.card-content::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  background: linear-gradient(to bottom, transparent, rgba(10,6,3,0.92));
+  border-radius: 0 0 10px 10px;
+  pointer-events: none;
+}
+
+.text {
+  position: relative;
+  z-index: 1;
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.text h2 {
+  margin-bottom: 4px;
+  color: #e8d8b0;
+  font-size: 16px;
+}
+
+.text p {
+  font-size: 11px;
+  color: #c8b890;
+}
+
+/* ============================================================
+   MOBILE BREAKPOINT
+============================================================ */
+@media (max-width: 768px) {
+  .map-wrapper        { display: none !important; }
+  .mobile-view        { display: block; overflow-y: auto; height: 100vh; -webkit-overflow-scrolling: touch; }
+  body                { overflow: hidden; }
+
+  /* Hide all corner overlays on mobile */
+  .corner-overlay,
+  .tbf-corner-overlay,
+  .tbf-corner-overlay-right,
+  .world-corner-overlay { display: none; }
+}
+
+
+
+
+
+/* ============================================================
+   EVELIA MUSIC PLAYER
+============================================================ */
+#eveliaPlayer {
+  margin-top: 10px;
+}
+
+.ev-track-list {
+  border: 1px solid #3a2a14;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.ev-track {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #2a1e0e;
+  transition: background 0.2s;
+}
+
+.ev-track:last-child { border-bottom: none; }
+
+.ev-track:hover { background: rgba(191,160,96,0.07); }
+
+.ev-track.active { background: rgba(191,160,96,0.12); }
+
+.ev-track-icon {
+  color: #6a4a20;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.ev-track.active .ev-track-icon { color: gold; }
+
+.ev-track-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.ev-track-name {
+  font-size: 12px;
+  color: #e8d8b0;
+  font-family: 'Garamond', serif;
+}
+
+.ev-track-loc {
+  font-size: 10px;
+  color: #7a6040;
+  font-style: italic;
+  margin-top: 1px;
+}
+
+.ev-track-playing {
+  font-size: 10px;
+  color: #3a2a14;
+  flex-shrink: 0;
+}
+
+.ev-track.active .ev-track-playing { color: gold; }
+
+.ev-player-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.ev-playpause,
+.ev-prev,
+.ev-next {
+  background: rgba(191,160,96,0.08);
+  border: 1px solid #3a2a14;
+  border-radius: 3px;
+  color: #bfa060;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s;
+  line-height: 1;
+}
+
+.ev-playpause { padding: 6px 18px; font-size: 14px; }
+.ev-prev, .ev-next { padding: 6px 14px; font-size: 20px; }
+
+.ev-playpause:hover,
+.ev-prev:hover,
+.ev-next:hover {
+  background: rgba(191,160,96,0.18);
+  color: gold;
+  border-color: #bfa060;
+}
+
+.ev-progress-wrap {
+  width: 100%;
+  height: 5px;
+  background: #2a1e0e;
+  border-radius: 3px;
+  cursor: pointer;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.ev-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, #8b5e10, gold);
+  border-radius: 3px;
+  transition: width 0.1s linear;
+}
+
+.ev-time-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #7a6040;
+  margin-bottom: 8px;
+  font-family: 'Garamond', serif;
+}
+
+.ev-now-playing {
+  text-align: center;
+  font-size: 11px;
+  color: #9a7a40;
+  font-style: italic;
+  font-family: 'Garamond', serif;
+  padding: 6px 0 2px;
+  border-top: 1px solid #2a1e0e;
+}
