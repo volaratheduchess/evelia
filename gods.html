@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panthéon of Evelia — The Divine Wiki</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void: #04030a;
+    --star-gold: #c9a84c;
+    --star-bright: #e8d08a;
+    --star-pale: #f5ecc8;
+    --scar-glow: #7b4fd4;
+    --scar-pulse: #a87ee8;
+    --scar-fade: #5b3a9e;
+    --earth-warm: #8b6914;
+    --moon-white: #e8e4f0;
+    --text-body: #c8bedd;
+    --text-dim: #7a6e94;
+    --text-faint: #4a4260;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--void);
+    color: var(--text-body);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 8%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 40% 22%, rgba(201,168,76,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 5%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 18%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 85% 10%, rgba(201,168,76,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 92% 25%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 15% 40%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 78% 45%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 33% 60%, rgba(168,126,232,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 88% 62%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 5% 70%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 47% 78%, rgba(201,168,76,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 72% 82%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 20% 88%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 95% 90%, rgba(255,255,255,0.5) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 300px;
+    background: radial-gradient(ellipse at bottom, rgba(123,79,212,0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .header {
+    position: relative;
+    text-align: center;
+    padding: 100px 40px 80px;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(123,79,212,0.25) 0%, transparent 70%);
+  }
+  .header-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 6px;
+    color: var(--scar-pulse);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0.8;
+    animation: fadeDown 1s ease forwards;
+  }
+  .header-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(32px, 6vw, 72px);
+    font-weight: 900;
+    color: var(--star-bright);
+    line-height: 1.1;
+    margin-bottom: 16px;
+    text-shadow: 0 0 60px rgba(201,168,76,0.4), 0 0 120px rgba(123,79,212,0.2);
+    animation: fadeDown 1s ease 0.2s both;
+  }
+  .header-subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    animation: fadeDown 1s ease 0.4s both;
+  }
+  .scar-divider {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--scar-glow), var(--star-gold), var(--scar-glow), transparent);
+    animation: scarGlow 3s ease-in-out infinite;
+  }
+  .scar-divider::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    background: inherit;
+    filter: blur(6px);
+    opacity: 0.5;
+  }
+  @keyframes scarGlow { 0%,100%{opacity:0.6}50%{opacity:1} }
+  .birth-order {
+    max-width: 700px;
+    margin: 60px auto;
+    padding: 0 40px;
+    z-index: 1;
+    position: relative;
+    animation: fadeUp 1s ease 0.6s both;
+  }
+  .birth-order h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: var(--scar-pulse);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .birth-list {
+    list-style: none;
+    border: 1px solid rgba(123,79,212,0.3);
+    background: rgba(10,8,22,0.8);
+  }
+  .birth-list li {
+    display: grid;
+    grid-template-columns: 28px 190px 1fr;
+    align-items: center;
+    padding: 14px 28px;
+    border-bottom: 1px solid rgba(123,79,212,0.15);
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    gap: 16px;
+  }
+  .birth-list li:last-child { border-bottom: none; }
+  .birth-num { color: var(--scar-pulse); font-size: 10px; letter-spacing: 2px; opacity: 0.6; }
+  .birth-name { color: var(--star-bright); }
+  .birth-event { color: var(--text-dim); font-family: 'Crimson Pro', serif; font-style: italic; font-size: 15px; }
+  .lore-intro {
+    max-width: 760px;
+    margin: 0 auto 80px;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    animation: fadeUp 1s ease 0.8s both;
+  }
+  .lore-intro p { font-size: 19px; color: var(--text-body); font-style: italic; line-height: 2; }
+  .lore-intro p + p { margin-top: 16px; }
+  .god-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(4,3,10,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(123,79,212,0.2);
+    padding: 0 20px;
+    display: flex;
+    gap: 2px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .god-nav a {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 14px 10px;
+    transition: color 0.3s;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .god-nav a:hover { color: var(--star-bright); }
+  .nav-separator {
+    color: var(--text-faint);
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+    opacity: 0.4;
+  }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px 120px;
+    position: relative;
+    z-index: 1;
+  }
+  .god-entry {
+    margin-bottom: 100px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.8s ease forwards;
+  }
+  .god-entry:nth-child(1){animation-delay:0.1s}
+  .god-entry:nth-child(2){animation-delay:0.2s}
+  .god-entry:nth-child(3){animation-delay:0.3s}
+  .god-entry:nth-child(4){animation-delay:0.4s}
+  .god-entry:nth-child(5){animation-delay:0.5s}
+  .god-entry:nth-child(6){animation-delay:0.6s}
+  .god-entry:nth-child(7){animation-delay:0.7s}
+  .god-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    margin-bottom: 40px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .god-sigil {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    border: 1px solid;
+    position: relative;
+  }
+  .god-sigil::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 1px solid;
+    opacity: 0.3;
+  }
+  .god-sigil.sigil-img { font-size: 0; padding: 6px; overflow: hidden; }
+  .god-sigil.sigil-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .god-portrait {
+    width: 140px;
+    height: 180px;
+    flex-shrink: 0;
+    position: relative;
+    margin-top: 4px;
+  }
+  .god-portrait::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border: 1px solid currentColor;
+    opacity: 0.5;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .god-portrait::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border: 1px solid currentColor;
+    opacity: 0.2;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .god-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+  .avatar-inner { display: flex; gap: 28px; align-items: flex-start; }
+  .avatar-text { flex: 1; }
+  .god-title-block { flex: 1; }
+  .god-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(24px, 4vw, 40px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  .god-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    opacity: 0.7;
+  }
+  .twin-note {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border: 1px solid rgba(255,255,255,0.15);
+    margin-bottom: 14px;
+    color: var(--text-dim);
+  }
+  .god-domains { display: flex; flex-wrap: wrap; gap: 8px; }
+  .domain-pill {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border: 1px solid;
+    opacity: 0.7;
+  }
+  .god-section { margin-bottom: 36px; }
+  .god-section h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .god-section h3::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.5;
+  }
+  .god-section p { color: var(--text-body); margin-bottom: 16px; font-size: 17px; }
+  .god-section p:last-child { margin-bottom: 0; }
+  blockquote {
+    margin: 28px 0;
+    padding: 20px 28px;
+    border-left: 2px solid var(--scar-glow);
+    background: rgba(123,79,212,0.06);
+    font-style: italic;
+    color: var(--star-pale);
+    font-size: 18px;
+  }
+  .avatar-block {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 24px 28px;
+    font-style: italic;
+    color: var(--moon-white);
+    font-size: 17px;
+    line-height: 1.9;
+    position: relative;
+  }
+  .avatar-block::before {
+    content: 'AVATAR';
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 4px;
+    background: var(--void);
+    padding: 0 8px;
+    color: var(--text-dim);
+  }
+  .trace-block {
+    background: rgba(139,105,20,0.07);
+    border: 1px solid rgba(139,105,20,0.2);
+    padding: 24px 28px;
+    position: relative;
+  }
+  .trace-block::before {
+    content: 'BIRTHMARK';
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 4px;
+    background: var(--void);
+    padding: 0 8px;
+    color: rgba(139,105,20,0.8);
+  }
+  .trace-name {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--star-gold);
+    margin-bottom: 12px;
+  }
+  .servant-box {
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 24px 28px;
+    background: rgba(255,255,255,0.02);
+  }
+  .servant-name {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .pulse-list { list-style: none; margin-top: 16px; }
+  .pulse-list li {
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 20px;
+    font-size: 16px;
+  }
+  .pulse-list li:last-child { border-bottom: none; }
+  .pulse-god-name {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding-top: 3px;
+  }
+  .section-divider {
+    text-align: center;
+    margin: 60px 0;
+    color: var(--text-faint);
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 6px;
+    position: relative;
+  }
+  .section-divider::before,.section-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 38%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1));
+  }
+  .section-divider::before{left:0}
+  .section-divider::after{right:0;transform:scaleX(-1)}
+
+  /* SACRED PLACES */
+  .sacred-header {
+    text-align: center;
+    padding: 80px 40px 60px;
+    position: relative;
+    z-index: 1;
+  }
+  .sacred-header h2 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(24px, 4vw, 48px);
+    color: var(--star-bright);
+    margin-bottom: 12px;
+    text-shadow: 0 0 40px rgba(201,168,76,0.3);
+  }
+  .sacred-header p {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  .place-entry {
+    margin-bottom: 100px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.8s ease forwards;
+  }
+  .place-image-wrap {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0;
+    width: 100%;
+    height: 400px;
+  }
+  .place-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  .place-image-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 220px;
+    background: linear-gradient(to bottom, transparent, var(--void));
+    pointer-events: none;
+  }
+  .place-content {
+    padding: 8px 0 0;
+  }
+  .place-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    flex-wrap: wrap;
+  }
+  .place-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(20px, 3vw, 32px);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .place-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.6;
+    padding: 4px 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-dim);
+  }
+  .place-body { font-size: 17px; color: var(--text-body); line-height: 1.9; }
+  .place-body p + p { margin-top: 14px; }
+
+  /* GOD COLORS */
+  #elyssara .god-sigil{border-color:rgba(160,160,170,0.3);color:#a0a0aa}
+  #elyssara .god-name{color:#b8b8c4;text-shadow:0 0 40px rgba(160,160,180,0.3)}
+  #elyssara .god-tag,#elyssara .god-section h3{color:#888898}
+  #elyssara .domain-pill{border-color:rgba(150,150,165,0.25);color:#a8a8b8}
+  #elyssara .servant-name{color:#b8b8c4}
+  #elyssor .god-sigil{border-color:rgba(240,240,248,0.35);color:#f0f0f8}
+  #elyssor .god-name{color:#f5f5ff;text-shadow:0 0 40px rgba(240,240,255,0.4)}
+  #elyssor .god-tag,#elyssor .god-section h3{color:#c8c8e0}
+  #elyssor .domain-pill{border-color:rgba(220,220,240,0.25);color:#e0e0f4}
+  #elyssor .servant-name{color:#f5f5ff}
+  #molgaron .god-sigil{border-color:rgba(139,105,20,0.4);color:var(--star-gold)}
+  #molgaron .god-name{color:#d4a830;text-shadow:0 0 40px rgba(212,168,48,0.3)}
+  #molgaron .god-tag,#molgaron .god-section h3{color:var(--earth-warm)}
+  #molgaron .domain-pill{border-color:rgba(139,105,20,0.3);color:#c49820}
+  #molgaron .servant-name{color:#d4a830}
+  #zaryth .god-sigil{border-color:rgba(180,60,40,0.4);color:#d44030}
+  #zaryth .god-name{color:#e05040;text-shadow:0 0 40px rgba(200,60,40,0.3)}
+  #zaryth .god-tag,#zaryth .god-section h3{color:#a03020}
+  #zaryth .domain-pill{border-color:rgba(180,60,40,0.3);color:#c04030}
+  #zaryth .servant-name{color:#e05040}
+  #selyra .god-sigil{border-color:rgba(50,180,100,0.3);color:#40c870}
+  #selyra .god-name{color:#50d880;text-shadow:0 0 40px rgba(50,200,100,0.3)}
+  #selyra .god-tag,#selyra .god-section h3{color:#30a050}
+  #selyra .domain-pill{border-color:rgba(50,180,100,0.3);color:#40b860}
+  #selyra .servant-name{color:#50d880}
+  #orythos .god-sigil{border-color:rgba(32,178,170,0.4);color:#20b2aa}
+  #orythos .god-name{color:#2ecec4;text-shadow:0 0 40px rgba(32,178,170,0.4)}
+  #orythos .god-tag,#orythos .god-section h3{color:#178a84}
+  #orythos .domain-pill{border-color:rgba(32,178,170,0.3);color:#26b8b0}
+  #orythos .servant-name{color:#2ecec4}
+  #viaraxis .god-sigil{border-color:rgba(123,79,212,0.4);color:var(--scar-pulse)}
+  #viaraxis .god-name{color:var(--scar-pulse);text-shadow:0 0 60px rgba(123,79,212,0.5)}
+  #viaraxis .god-tag,#viaraxis .god-section h3{color:var(--scar-fade)}
+  #viaraxis .domain-pill{border-color:rgba(123,79,212,0.3);color:var(--scar-pulse)}
+  #viaraxis .servant-name{color:var(--scar-pulse)}
+  #viaraxis .trace-block{background:rgba(123,79,212,0.07);border-color:rgba(123,79,212,0.25)}
+  #viaraxis .trace-block::before{color:var(--scar-fade)}
+
+  /* PLACE COLORS */
+  #place-molgaron .place-name { color: #d4a830; }
+  #place-orythos .place-name { color: #2ecec4; }
+  #place-zaryth .place-name { color: #e05040; }
+  #place-twins .place-name { color: #d4ccee; }
+  #place-selyra .place-name { color: #50d880; }
+  #place-viaraxis .place-name { color: var(--scar-pulse); }
+
+  @keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+  footer {
+    text-align: center;
+    padding: 60px 40px;
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(123,79,212,0.2);
+  }
+  footer p{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;color:var(--text-faint);text-transform:uppercase}
+  ::-webkit-scrollbar{width:6px}
+  ::-webkit-scrollbar-track{background:var(--void)}
+  ::-webkit-scrollbar-thumb{background:var(--scar-fade);border-radius:3px}
+  @media(max-width:640px){
+    .god-header{flex-direction:column;gap:20px}
+    .god-sigil{width:60px;height:60px;font-size:28px}
+    .birth-list li{grid-template-columns:1fr;gap:4px}
+    .pulse-list li{grid-template-columns:1fr}
+    main,.birth-order,.lore-intro{padding-left:20px;padding-right:20px}
+    .avatar-inner{flex-direction:column}
+    .god-portrait{width:100%;height:200px}
+    .place-image-wrap{height:260px}
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-eyebrow">The World of Evelia</div>
+  <h1 class="header-title">Panthéon of Evelia</h1>
+  <div class="header-subtitle">The Divine Codex — Seven Gods of the Known World</div>
+  <div class="scar-divider"></div>
+</header>
+
+<nav class="god-nav">
+  <a onclick="document.getElementById('origins').scrollIntoView({behavior:'smooth'})">Origins</a>
+  <a onclick="document.getElementById('elyssara').scrollIntoView({behavior:'smooth'})">Elyssara</a>
+  <a onclick="document.getElementById('elyssor').scrollIntoView({behavior:'smooth'})">Elyssor</a>
+  <a onclick="document.getElementById('molgaron').scrollIntoView({behavior:'smooth'})">Molgaron</a>
+  <a onclick="document.getElementById('zaryth').scrollIntoView({behavior:'smooth'})">Zaryth</a>
+  <a onclick="document.getElementById('selyra').scrollIntoView({behavior:'smooth'})">Selyra</a>
+  <a onclick="document.getElementById('orythos').scrollIntoView({behavior:'smooth'})">Orythos</a>
+  <a onclick="document.getElementById('viaraxis').scrollIntoView({behavior:'smooth'})">Viaraxis</a>
+  <span class="nav-separator">|</span>
+  <a onclick="document.getElementById('sacred-places').scrollIntoView({behavior:'smooth'})">Sacred Places</a>
+</nav>
+
+<section class="lore-intro" id="origins">
+  <p>The gods of Evelia were not born from nothing. They were born from mortals — from the first time an emotion, a need, a truth was felt deeply enough by enough souls to take divine form. They did not create the world. The world created them.</p>
+  <p>The gods grow with civilization. The more mortals understand and name something, the stronger the corresponding god becomes. Some gods are still being born. Others could die if forgotten long enough.</p>
+</section>
+
+<div class="birth-order">
+  <h2>Order of Divine Births</h2>
+  <ul class="birth-list">
+    <li><span class="birth-num">I</span><span class="birth-name">Elyssara & Elyssor</span><span class="birth-event">First mortal breath — first death</span></li>
+    <li><span class="birth-num">II</span><span class="birth-name">Molgaron</span><span class="birth-event">First seed pressed into earth — first hope of harvest</span></li>
+    <li><span class="birth-num">III</span><span class="birth-name">Zaryth</span><span class="birth-event">First refusal to give up</span></li>
+    <li><span class="birth-num">IV</span><span class="birth-name">Selyra</span><span class="birth-event">First desire to possess more</span></li>
+    <li><span class="birth-num">V</span><span class="birth-name">Orythos</span><span class="birth-event">First story told and shared</span></li>
+    <li><span class="birth-num">VI</span><span class="birth-name">Viaraxis</span><span class="birth-event">First understanding of magic</span></li>
+  </ul>
+</div>
+
+<div class="section-divider">✦ The Divine Entries ✦</div>
+
+<main>
+
+  <!-- ELYSSARA -->
+  <article class="god-entry" id="elyssara">
+    <div class="god-header">
+      <div class="god-sigil sigil-img"><img src="https://i.ibb.co/NgkJ0YC8/file-0000000084a471f5afca84f5bb1bd78b-removebg-preview.png" alt="Elyssara sigil" /></div>
+      <div class="god-title-block">
+        <div class="god-tag">Goddess — The Oldest</div>
+        <h2 class="god-name">Elyssara</h2>
+        <div class="twin-note">Twin of Elyssor</div>
+        <div class="god-domains">
+          <span class="domain-pill">Death</span>
+          <span class="domain-pill">Peace</span>
+          <span class="domain-pill">Accomplishment</span>
+          <span class="domain-pill">Welcome</span>
+        </div>
+      </div>
+    </div>
+    <div class="god-section">
+      <h3>Birth</h3>
+      <p>At the first mortal breath and at the first death — at the same instant as her twin. Before hunger, before defiance, before desire. Before anyone prayed, before anyone told a story — there was already someone dying. And Elyssara was there.</p>
+      <p>She is warmth. The gentle presence at the end of every path — not because she seeks to comfort, but because that is simply what she is. Death is not a punishment in her arms. It is a threshold. The moment where everything one has carried can finally be set down.</p>
+      <p>She is the one who speaks when the twins must act. Not because Elyssor cannot — but because she is the one that gods and mortals alike can hear without closing themselves off. Her voice is rare. When she opens it, no one argues.</p>
+    </div>
+    <div class="god-section">
+      <h3>Avatar</h3>
+      <div class="avatar-block">
+        <div class="avatar-inner">
+          <div class="god-portrait" style="color:#a0a0aa">
+        <img src="https://i.ibb.co/zj591yN/1774307957049.png" alt="1774307957049" border="0" />
+          </div>
+          <div class="avatar-text">
+            Softness and gentle light. Full cheeks, the warm presence of someone whose arms were made to hold. Her long black hair is scattered with stars — not reflections, actual stars glowing softly in her hair like a night sky she carries with her. Her skin is luminous like the moon. Her eyes are black and abyssal, deep like the space between stars.<br><br>
+            She looks like the last kiss on a forehead before the eyes close. Like a mother tucking in the covers one final time.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="god-section">
+      <h3>Birthmark</h3>
+      <div class="trace-block">
+        <div class="trace-name">— The Abyss</div>
+        <p>In the middle of the sea, a gaping hole where water endlessly falls and whose bottom no one has ever seen. In some cultures the dead are not buried — they are placed on boats and sent toward the Abyss, to fall into her arms after passing through the shadow of Elyssor's gaze at its center.</p>
+      </div>
+    </div>
+    <div class="god-section">
+      <h3>Servants</h3>
+      <div class="servant-box">
+        <div class="servant-name">None</div>
+        <p>Death cannot be delegated. It lives in every heart not because people pray to it but because no one can deny it.</p>
+      </div>
+    </div>
+  </article>
+
+  <div class="section-divider">· · ·</div>
+
+  <!-- ELYSSOR -->
+  <article class="god-entry" id="elyssor">
+    <div class="god-header">
+      <div class="god-sigil sigil-img"><img src="https://i.ibb.co/cKPJ4tt3/file-00000000389c71f8974c2aeedf484dd5-removebg-preview.png" alt="Elyssor sigil" /></div>
+      <div class="god-title-block">
+        <div class="god-tag">God — The Oldest</div>
+        <h2 class="god-name">Elyssor</h2>
+        <div class="twin-note">Twin of Elyssara</div>
+        <div class="god-domains">
+          <span class="domain-pill">Reincarnation</span>
+          <span class="domain-pill">Scribe of Life</span>
+          <span class="domain-pill">Judge of Souls</span>
+        </div>
+      </div>
+    </div>
+    <div class="god-section">
+      <h3>Birth</h3>
+      <p>At the first mortal breath and at the first death — at the same instant as his twin. Before anyone prayed, before anyone desired, before anyone told a story — there was already someone being born. And Elyssor picked up his quill.</p>
+      <p>He is cold. Not cruel — just precise in the way something must be when it cannot afford to be otherwise. He writes everything. Every life, every joy, every act of cowardice, every ordinary moment of an unremarkable Tuesday. Nothing is judged during the writing. When life ends, the soul meets him first.</p>
+      <p>He reads. Everything. Then asks one single question.</p>
+      <blockquote>"Are you satisfied with the life you lived?"</blockquote>
+      <p>He does not listen to the answer the mouth forms — he listens to what resonates at the deepest level, where no one truly lies even to themselves. If the answer is yes, Elyssara opens the door. If the answer is no, the soul departs — new life, new era, no memories. Not a punishment. The logical consequence of a life left unfinished by its own standards.</p>
+      <p>He calculates and waits. He does not say what he knows.</p>
+    </div>
+    <div class="god-section">
+      <h3>Avatar</h3>
+      <div class="avatar-block">
+        <div class="avatar-inner">
+          <div class="god-portrait" style="color:#f0f0f8">
+            <img src="https://i.ibb.co/GvKXvbBp/file-00000000477871fd949525a085704fb9.png" alt="file-00000000477871fd949525a085704fb9" border="0" />
+          </div>
+          <div class="avatar-text">
+            Tall and thin, almost too thin. His skin is the color of old paper — pale, nearly translucent. His extremities fade to black from fingers to elbow, as though the words of every life he has ever written have been printed into him. His eyes are black — not dark, black like the absence of light itself. His long hair is silver, like a page not yet filled.<br><br>
+            He does not speak much. He has already read the ending.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="god-section">
+      <h3>Birthmark</h3>
+      <div class="trace-block">
+        <div class="trace-name">— The Crystal Tower</div>
+        <p>At the heart of Elyssara's Abyss, an immense tower disappearing into the sky — made entirely of crystal, like the needle of a great sundial set upon the whole world. He watches from up there. He always has. No one knows whether the tower was there before the Abyss or after. Both seem to have always existed together — like them.</p>
+      </div>
+    </div>
+    <div class="god-section">
+      <h3>The Transaction with Selyra</h3>
+      <p>When Selyra turned her gaze on Evelia with the calculating eye of a dragon surveying a hoard, Elyssor did not fight her. He simply approached and told her what she wanted to hear.</p>
+      <blockquote>"My dear, in your position I would wait. This world is young. Let the other gods harvest, grow, build. Let the spoils — the devotion, the material wealth, the divine gains of every god, the gods themselves — grow until they are truly worthy of your appetite."</blockquote>
+      <p>She agreed to wait. She is still waiting. Her appetite grows at exactly the same rate as what she contemplates. There is no finish line. There never was. Elyssor knows this. He writes.</p>
+    </div>
+    <div class="god-section">
+      <h3>Servants</h3>
+      <div class="servant-box">
+        <div class="servant-name">None</div>
+        <p>Judgment cannot be delegated. It lives in every heart not because people pray to it but because no one can escape it.</p>
+      </div>
+    </div>
+  </article>
+
+  <div class="section-divider">· · ·</div>
+
+  <!-- MOLGARON -->
+  <article class="god-entry" id="molgaron">
+    <div class="god-header">
+      <div class="god-sigil sigil-img"><img src="https://i.ibb.co/Q3mDZTRT/file-000000007d0471fbb2d88fda072f1bfa-removebg-preview.png" alt="Molgaron sigil" /></div>
+      <div class="god-title-block">
+        <div class="god-tag">God — Ancient</div>
+        <h2 class="god-name">Molgaron</h2>
+        <div class="god-domains">
+          <span class="domain-pill">Earth</span>
+          <span class="domain-pill">Fertility</span>
+          <span class="domain-pill">Labour</span>
+          <span class="domain-pill">Feast</span>
+        </div>
+      </div>
+    </div>
+    <div class="god-section">
+      <h3>Birth</h3>
+      <p>The first time a mortal pressed a seed into the ground and looked up at the sky — not with certainty, but with hope. Hope that something would grow. That the earth would answer. That the hunger would end. From that first act of faith placed in the soil, Molgaron took form.</p>
+      <p>He does not speak. He does not need to. He is the earth as it truly is — generous with those who respect it, merciless with those who neglect it.</p>
+    </div>
+    <div class="god-section">
+      <h3>Avatar</h3>
+      <div class="avatar-block">
+        <div class="avatar-inner">
+          <div class="god-portrait" style="color:#d4a830">
+            <img src="https://i.ibb.co/7xwk4jTN/1774302001304.png" alt="1774302001304" border="0" />
+          </div>
+          <div class="avatar-text">
+            Tall, broad-backed, hands calloused from working the earth since before the earth had a name. His skin is sun-kissed — warm and golden. His hair is blonde like the first rays of morning. His eyes shift with the seasons — tender green in spring, deep blue like a summer sky — always carrying the clarity of those first days when everything begins again.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="god-section">
+      <h3>Birthmark</h3>
+      <div class="trace-block">
+        <div class="trace-name">— The Immense Tree</div>
+        <p>A tree whose branches touch the sky and whose roots, they say, reach across the entire world. No one knows exactly where it stands — accounts differ, maps contradict each other. But those who have seen it all describe the same thing : a trunk so wide an entire city could lean against it, a canopy so dense that night falls beneath it at midday.</p>
+        <p>It is said that an infertile woman who drinks the morning dew from its leaves at the first hour of the solstice will be blessed with a child within the year. Many have tried. Some accounts persist.</p>
+      </div>
+    </div>
+    <div class="god-section">
+      <h3>Servants</h3>
+      <div class="servant-box">
+        <div class="servant-name">The Growers</div>
+        <p>Those whose hand is greener than the earth itself. Those who read the sky and know whether tomorrow will bring rain. Those whose table is always full and who keep welcoming guests even when it probably shouldn't be possible. Molgaron makes no grand gesture to choose them — one day they simply realize they hear something in the soil that others cannot. No formal organization. No hierarchy. Just people whose hands know what they are doing and whose door stays open.</p>
+      </div>
+    </div>
+  </article>
+
+  <div class="section-divider">· · ·</div>
+
+  <!-- ZARYTH -->
+  <article class="god-entry" id="zaryth">
+    <div class="god-header">
+      <div class="god-sigil sigil-img"><img src="https://i.ibb.co/7d8T4jJK/file-000000009d5c71f78b72565290a0fb71-removebg-preview.png" alt="Zaryth sigil" /></div>
+      <div class="god-title-block">
+        <div class="god-tag">God — Ancient</div>
+        <h2 class="god-name">Zaryth</h2>
+        <div class="god-domains">
+          <span class="domain-pill">Tenacity</span>
+          <span class="domain-pill">Passion</span>
+          <span class="domain-pill">Devotion</span>
+          <span class="domain-pill">Will to Live</span>
+        </div>
+      </div>
+    </div>
+    <div class="god-section">
+      <h3>Birth</h3>
+      <p>The first time an exhausted mortal — at the end of their rope, on the edge of giving in — gritted their teeth and kept going. Not out of hope. Just because something in them refused to stop. From that primitive, unreasoned refusal, Zaryth was born.</p>
+      <p>He is blind. He does not choose who he pushes. He does not reward the righteous or punish the cruel. He is simply there — in the warrior who rises one too many times, in the parent who protects against impossible odds, in the executioner who continues as well. He is the force itself. What it serves does not concern him.</p>
+    </div>
+    <div class="god-section">
+      <h3>Avatar</h3>
+      <div class="avatar-block">
+        <div class="avatar-inner">
+          <div class="god-portrait" style="color:#d44030">
+            <img src="https://i.ibb.co/DP5HmmqP/1774304297459.png" alt="1774304297459" border="0" />
+          </div>
+          <div class="avatar-text">
+            A massive silhouette beneath ancient, battered armor — not damaged, battered. The difference between what gave way and what held. No face is really visible. Something between a warrior and a boulder. The sword one grips to pull oneself upright after the knees have touched the ground.<br><br>
+            When he truly manifests, it is not a vision. It is a cry rising from the gut — primitive, irresistible — that forces a person upright before they have even decided to rise.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="god-section">
+      <h3>Birthmark</h3>
+      <div class="trace-block">
+        <div class="trace-name">— The Crater Bastion</div>
+        <p>A natural crater whose formation offers perfect natural defense — the ideal ground for building something solid, durable, and unbreakable. This crater is today the heart of the Ra'Ka'Tul Empire. The Empire was founded there, grew there, prospered there — without anyone quite remembering why that particular spot felt so obvious. It has been so long that people have forgotten they built their civilization upon the birthplace of Zaryth.</p>
+      </div>
+    </div>
+    <div class="god-section">
+      <h3>Relation with Molgaron</h3>
+      <p>Two ancients who do not need to speak to understand each other. Earth without the will to push through it stays inert. Will without earth to anchor it burns out. They coexist with the quiet respect of those who understand that neither truly works without the other.</p>
+    </div>
+    <div class="god-section">
+      <h3>Servants</h3>
+      <div class="servant-box">
+        <div class="servant-name">The Relevants</div>
+        <p>Not a profession. A nature. People marked by Zaryth — who carry that cry in their chest and spend their lives passing it on to others when they need it most. Those who have risen and reach back down so others can do the same. No organization. No guild. They recognize each other in a glance — that same quiet, inextinguishable flame.</p>
+      </div>
+    </div>
+  </article>
+
+  <div class="section-divider">· · ·</div>
+
+  <!-- SELYRA -->
+  <article class="god-entry" id="selyra">
+    <div class="god-header">
+      <div class="god-sigil sigil-img"><img src="https://i.ibb.co/XksQgsr6/file-00000000bfc471f59d606447bd61d493-removebg-preview-1.png" alt="Selyra sigil" /></div>
+      <div class="god-title-block">
+        <div class="god-tag">Goddess — Ancient</div>
+        <h2 class="god-name">Selyra</h2>
+        <div class="god-domains">
+          <span class="domain-pill">Greed</span>
+          <span class="domain-pill">Luxury</span>
+          <span class="domain-pill">Opulence</span>
+          <span class="domain-pill">Accumulation</span>
+        </div>
+      </div>
+    </div>
+    <div class="god-section">
+      <h3>Birth</h3>
+      <p>The first time a mortal looked at what they had and thought — <em>"I want more."</em> Not out of need. Out of pure desire. From that bottomless wanting, Selyra took form.</p>
+      <p>She does not sleep. She spends her nights counting what she owns and her days planning how to own more. She is blind to everything without value — and in her mind, everything has value. Relationships. Loyalties. The devotion of mortals. The work of other gods. Lives themselves.</p>
+      <p>She wants to own everything — the gods themselves, their accomplishments, their very existence, everything they are and everything they have built since the beginning of the world. In her mind, this is not ambition. It is simply a matter of time.</p>
+    </div>
+    <div class="god-section">
+      <h3>Avatar</h3>
+      <div class="avatar-block">
+        <div class="avatar-inner">
+          <div class="god-portrait" style="color:#50d880">
+            <img src="https://i.ibb.co/jZkLbY02/1774305597266.png" alt="1774305597266" border="0" />
+          </div>
+          <div class="avatar-text">
+            Skin of black marble veined with gold and diamond — not tattooed, not painted. That is simply her skin. Her eyes are emerald green, perpetually calculating the worth of everything they fall upon. Her hair flows like molten gold — warm, liquid, impossible.<br><br>
+            She is beautiful in a way that makes one uneasy. Looking at her stirs something unwanted — the desire to possess her, followed immediately by the humiliating certainty that it will never happen. She is the most beautiful thing one will never have. She knows it. And that knowledge in her emerald eyes is the only thing she gives away freely.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="god-section">
+      <h3>Birthmark</h3>
+      <div class="trace-block">
+        <div class="trace-name">— The Golden River</div>
+        <p>Hidden deep in the Jagged Maw, a river whose waters run gold. It is said that casting substantial offerings into it will keep poverty from touching one's bloodline — for generations. Few have found it. Those who return never say exactly where it lies. Rarity, after all, always has value.</p>
+      </div>
+    </div>
+    <div class="god-section">
+      <h3>Servants</h3>
+      <div class="servant-box">
+        <div class="servant-name">The Corrupted</div>
+        <p>Selyra does not call — she invests. She finds those whose greed has already begun eating away at something essential and gives it a gentle push. Her servants do not form a guild — they form a network. Swindlers, thieves, corrupt nobles, brokers of shadowy deals. They do not gather in her name. But they recognize each other in the way a gaze lingers a moment too long on something that shines.</p>
+        <p>What none of them realize is that they are already part of her spoils.</p>
+      </div>
+    </div>
+  </article>
+
+  <div class="section-divider">· · ·</div>
+
+  <!-- ORYTHOS -->
+  <article class="god-entry" id="orythos">
+    <div class="god-header">
+      <div class="god-sigil sigil-img"><img src="https://i.ibb.co/ZRRf1BcL/file-00000000855471fbbb6b798fea3dbd08-removebg-preview.png" alt="Orythos sigil" /></div>
+      <div class="god-title-block">
+        <div class="god-tag">God — Ancient</div>
+        <h2 class="god-name">Orythos</h2>
+        <div class="god-domains">
+          <span class="domain-pill">Good Grace</span>
+          <span class="domain-pill">Inspiration</span>
+          <span class="domain-pill">Message</span>
+          <span class="domain-pill">Travel</span>
+          <span class="domain-pill">Art</span>
+        </div>
+      </div>
+    </div>
+    <div class="god-section">
+      <h3>Birth</h3>
+      <p>The first time a story was told and shared — not to inform, but to pass something human from one mouth to one ear. From that first shared tale beside a fire, Orythos took form.</p>
+      <p>He is the curious younger sibling of the pantheon — always moving, always listening. He genuinely loves mortals : their noise, their mistakes, their short and intense lives. He has no plan. He has no agenda. He is simply in motion, because the idea of stopping has never seriously crossed his mind.</p>
+    </div>
+    <div class="god-section">
+      <h3>Avatar</h3>
+      <div class="avatar-block">
+        <div class="avatar-inner">
+          <div class="god-portrait" style="color:#20b2aa">
+            <img src="https://i.ibb.co/sdyYsC8h/1774313876552.png" alt="1774313876552" border="0" />
+          </div>
+          <div class="avatar-text">
+            A young man in adventurer's clothes, his gear worn from use rather than neglect. His hood always casts his face in shadow — but the smile is visible. Always that mischievous smile.<br><br>
+            One finds him sitting at a campfire in the middle of nowhere, or already woven into a traveling group as though he had always been there. He offers a seat, a rest. He tells a story. When he leaves, no one can quite pinpoint the moment he disappeared.<br><br>
+            If asked where he is going : <em>"I had a message to deliver."</em><br>
+            If asked to stay : <em>"No. My message has been given to you, traveler. Be careful."</em><br><br>
+            The stories he tells always concern someone who walked the same road as the one listening. Not to frighten. Not to prescribe. Just to say — here is one way this path can end. The ending is yours. Choose whether it will be the same or something different.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="god-section">
+      <h3>Birthmark</h3>
+      <div class="trace-block">
+        <div class="trace-name">— The Interlaced Roads</div>
+        <p>Veins of interconnected paths running everywhere, always finding their way back to each other. Perfectly safe, intuitive — as if laid down by someone who already knew every destination before the destinations existed. Today they are the most traveled roads in the world, to the point where no one can say anymore whether they were always there or whether mortals built them.</p>
+      </div>
+    </div>
+    <div class="god-section">
+      <h3>Servants</h3>
+      <div class="servant-box">
+        <div class="servant-name">The Bards</div>
+        <p>Orythos chooses no one. All bards are his servants — and none of them truly know it. One evening, somewhere, a bard heard a story that lodged itself in them differently than others do. Impossible to forget. Impossible not to pass on. So they tell it. They do not know they are carrying a divine message. They just think they have a good story. That is exactly what Orythos wanted.</p>
+      </div>
+    </div>
+  </article>
+
+  <div class="section-divider">· · ·</div>
+
+  <!-- VIARAXIS -->
+  <article class="god-entry" id="viaraxis">
+    <div class="god-header">
+      <div class="god-sigil sigil-img"><img src="https://i.ibb.co/HTMMMtrj/file-00000000f33871fd9d51db1e9aaa9cc6-removebg-preview.png" alt="Viaraxis sigil" /></div>
+      <div class="god-title-block">
+        <div class="god-tag">Goddess — The Youngest</div>
+        <h2 class="god-name">Viaraxis</h2>
+        <div class="god-domains">
+          <span class="domain-pill">Magic</span>
+          <span class="domain-pill">Mana</span>
+          <span class="domain-pill">Stars</span>
+          <span class="domain-pill">Guidance</span>
+          <span class="domain-pill">Bloom</span>
+        </div>
+      </div>
+    </div>
+    <div class="god-section">
+      <h3>Birth</h3>
+      <p>Magic has always existed on Evelia — present like the air one breathes, unnamed and unrecognized. When civilization grew advanced enough to study the stars beyond navigation, to sense that something living pulsed within everyone — through that collective recognition, Viaraxis was born.</p>
+      <p>She did not create magic. She became its divine form. She is still figuring out what she is, in real time, as mortals themselves continue to define what magic means. Every new magical principle they discover makes her a little more defined, a little more stable, a little closer to an avatar she will one day be able to hold.</p>
+      <p>She is the youngest of the pantheon. And she has something to prove. She floods Evelia with her energy — more than is needed, more than strictly belongs to her. She does not do it consciously. She simply cannot yet contain what she is.</p>
+    </div>
+    <div class="god-section">
+      <h3>Avatar</h3>
+      <div class="avatar-block">
+        <div class="avatar-inner">
+          <div class="god-portrait" style="color:#a87ee8">
+            <img src="https://i.ibb.co/dw5xTVcb/1774313807441.png" alt="1774313807441" border="0" />
+          </div>
+          <div class="avatar-text">
+            She tries. The other gods form their avatars with the ease of those who have had millennia to understand their own nature. Viaraxis is too young, too uncontrolled to compress what she is into something simple enough for a mortal mind to hold. Every attempt dissolves — too much light, too much energy, a shape that begins to form and then softly detonates into stars.<br><br>
+            For now she whispers. She pulses through the Scar. She leaves traces in the dreams of her Readers. And somewhere deep down, this limitation weighs on her more than she will admit.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="god-section">
+      <h3>Birthmark</h3>
+      <div class="trace-block">
+        <div class="trace-name">— The Scar of Sundering</div>
+        <p>The Scar is not a wound in the world. It is where Viaraxis entered Evelia — the place where magic became aware of itself and took divine form. On calm days it glows. On stormy ones it sings. And sometimes, when the weight of accumulated offenses becomes too great, something crawls out of it.</p>
+        <p>The magic bleeding from the Scar settles differently depending on which side it lands. To the west it refines, becoming orderly — nurturing fertile soil, clear skies, a magic of light and growth. To the east it falls raw and hungry, soaking into the earth and making it volatile, demanding, alive in the most dangerous sense. Not an injustice. Just what happens when something too vast overflows in two directions at once.</p>
+      </div>
+    </div>
+    <div class="god-section">
+      <h3>The Ley Pulse — What Is Really Happening</h3>
+      <p>Every century, the Scar convulses. Viaraxis pulses — involuntary, uncontrolled, the divine equivalent of a young god breathing too hard in a space too small. A wave of mana floods the entire continent, touching every blessing of every god on Evelia and amplifying each one far beyond what its owner intended.</p>
+      <ul class="pulse-list">
+        <li><span class="pulse-god-name" style="color:#d4a830">Molgaron</span><span>His harvests surge to miraculous abundance — well beyond anything he planned. So generous that mortals naturally credited Viaraxis for the fertility of the earth. He smiles. He knows. Correcting mortals has never been his way.</span></li>
+        <li><span class="pulse-god-name" style="color:#2ecec4">Orythos</span><span>His roads grow easier to walk, the winds kinder for sailors, the world a little more beautiful for a while. The inspiration of artists ignites. Bards find themselves singing songs they did not know they knew.</span></li>
+        <li><span class="pulse-god-name" style="color:#e05040">Zaryth</span><span>He welcomes the Churn with open arms. Every monster that claws its way up, every earthquake, every violent surge of wild magic — ordeals offered to those he has blessed. Mortals who survive come out more. Their hearts fill faster with that primitive, inextinguishable tenacity. He may be the only god in the pantheon who genuinely looks forward to the next Pulse.</span></li>
+        <li><span class="pulse-god-name" style="color:#9090b0">The Twins</span><span>Untouched. Life and death do not amplify. They do not respond to mana waves. They existed before magic, before Viaraxis, before anyone had a word for what mana even was.</span></li>
+        <li><span class="pulse-god-name" style="color:#50d880">Selyra</span><span>She rages. Territorial creatures in Ra'Ka'Tul turn ferocious beyond their nature. Greed and jealousy surge through mortal hearts. The earth shakes and buried riches crack to the surface. She lends her riches to mortals — she does not give them. And Viaraxis, without a thought, scatters her spoils as though they belong to no one.</span></li>
+      </ul>
+    </div>
+    <div class="god-section">
+      <h3>The Balance</h3>
+      <p>The Churn takes lives — violent deaths, ends that came too soon. But the Bloom creates conditions for births that might never have happened otherwise. The balance holds. Not cleanly. Not perfectly. But it holds.</p>
+      <p>Elyssor watches the numbers. For now, they hold. It is Elyssara who will speak if that changes — once, clearly. And Viaraxis will have to listen.</p>
+      <p>What neither twin says aloud — but both understand — is that maintaining this balance is Viaraxis's role. It belongs to her, written into her nature. She is magic. Magic gives and takes in equal measure. They are waiting to see whether she figures that out on her own.</p>
+    </div>
+    <div class="god-section">
+      <h3>How the Other Gods See Her</h3>
+      <p><em>Molgaron</em> watches with a paternal smile. He has seen young gods before. This way of overflowing with energy, wanting to prove — it is the innocence of new gods. It passes, always.</p>
+      <p><em>Zaryth</em> does not judge her. He sees her enthusiasm as raw force — not yet directed, but force nonetheless. The day that energy finds its aim, it will be remarkable.</p>
+      <p><em>Orythos</em> likes her — sincerely, warmly. Since she arrived, since magic pulses through the world, he has more fabulous stories running along the roads of Evelia. She feeds his domain without even knowing it.</p>
+      <p><em>Elyssor</em> observes closely, in silence. He knows she is meant to maintain the balance. He waits to see if she will understand that on her own.</p>
+      <p><em>Selyra</em> sees her as a thief. Not a rival — something colder and more personal. Evelia is her investment, her spoils growing quietly. And this uncontrollable young goddess puts her hands in it without permission, without awareness. Which is perhaps worse than if she did it on purpose.</p>
+    </div>
+    <div class="god-section">
+      <h3>Servants</h3>
+      <div class="servant-box">
+        <div class="servant-name">The Readers</div>
+        <p>The only truly organized cult in the pantheon — which says something about Viaraxis herself, the youngest god with the most ambition. Not named, not elected — recognized. Intuitions that prove right too often. Dreams that arrive before the events they describe. A fluency with constellations that feels less like learning and more like remembering. They interpret the stars, maintain archives of prophecy, and sit with the dying.</p>
+        <p>What they do not fully understand is that by studying magic, naming it, and passing it on — they are actively giving Viaraxis shape. Every Reader who grasps a new principle of magic makes her a little more stable, a little more defined, a little closer to the avatar she is still trying to form.</p>
+      </div>
+    </div>
+  </article>
+
+</main>
+
+<!-- SACRED PLACES SECTION -->
+<div id="sacred-places">
+  <div class="sacred-header">
+    <div class="scar-divider" style="margin-bottom:40px"></div>
+    <h2>Sacred Places</h2>
+    <p>Temples, Altars & Sanctuaries of the Seven Gods</p>
+  </div>
+
+  <main>
+
+    <!-- MOLGARON PLACE -->
+    <article class="place-entry" id="place-molgaron">
+      <div class="place-image-wrap">
+        <img src="https://i.ibb.co/BHJWSsK3/df.png" alt="df" border="0" />
+      </div>
+      <div class="place-content">
+        <div class="place-header">
+          <h2 class="place-name">The Altars of Molgaron</h2>
+          <span class="place-tag">Earth — Fertility — Feast</span>
+        </div>
+        <div class="place-body">
+          <p>There is no church. No dome, no clergy, no organized congregation. Molgaron's altars are found at the foot of old trees — the kind that have been standing long enough to remember something. A flat stone worn smooth by generations of hands. A basket of the first harvest. Bread still warm. Whatever the earth gave that season, set down without ceremony at the place where root meets soil.</p>
+          <p>They appear everywhere fields have been worked and meals have been shared. Nobody builds them deliberately. They accumulate the way gratitude accumulates — slowly, without announcement, until one day the stone is simply there and everyone treats it as if it always was.</p>
+          <p>The largest known altar sits beneath the Immense Tree itself. Those who have found it describe an enormous flat root, wide as a table, covered in offerings so old the ones at the bottom have become part of the wood. Nobody tends it. Nobody needs to.</p>
+        </div>
+      </div>
+    </article>
+
+    <div class="section-divider">· · ·</div>
+
+    <!-- ORYTHOS PLACE -->
+    <article class="place-entry" id="place-orythos">
+      <div class="place-image-wrap">
+        <img src="https://i.ibb.co/yB6CHMgf/image.png" alt="image" border="0" />
+      </div>
+      <div class="place-content">
+        <div class="place-header">
+          <h2 class="place-name">The Lanterns of Orythos</h2>
+          <span class="place-tag">Travel — Message — Inspiration</span>
+        </div>
+        <div class="place-body">
+          <p>Not a building. Not a shrine. A lantern on a post at a crossroads, a fork in the road, any place where a traveler has to choose a direction. They appear along every major route in Evelia and most of the minor ones — always lit, always placed where the path is uncertain.</p>
+          <p>Nobody knows who hung the first one. Nobody knows who keeps them burning. The custom is simple and universal : when a traveler passes a lantern of Orythos and finds it dimming, they stop. They feed the flame. They move on. It takes minutes. It costs almost nothing. It is considered basic road etiquette in most of Eladoria and large parts of the known world.</p>
+          <p>The lanterns carry no inscription, no symbol, no obvious mark of divinity. They are just lights at the places where the road splits. But every bard knows — and every seasoned traveler eventually learns — that if you sit beneath one long enough, another traveler will eventually pass, and in the simple exchange of where they came from and where they are going, you somehow discover where you were meant to go next. Some say this is how Orythos guides travelers. Others say that roads have always brought the right people together.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <div class="section-divider">· · ·</div>
+
+    <!-- ZARYTH PLACE -->
+    <article class="place-entry" id="place-zaryth">
+      <div class="place-image-wrap">
+        <img src="https://i.ibb.co/1YQGRypc/juj.png" alt="juj" border="0" />
+      </div>
+      <div class="place-content">
+        <div class="place-header">
+          <h2 class="place-name">The Cathedral of Thang-Tur</h2>
+          <span class="place-tag">Zaryth — Tenacity — Will to Live</span>
+        </div>
+        <div class="place-body">
+          <p>Built at the heart of the Crater Bastion, the birthplace of the empire. Dark stone and iron, vaulted ceilings held up by columns carved to look like arms bearing weight from below. The stained glass runs floor to ceiling along every wall — not battle scenes, not conquering heroes. People getting up. A soldier rising from mud. A woman standing again after the smoke of a burning home clears. A man whose grief has bent him in half slowly straightening. The glass does not care what knocked them down. It only shows the rising.</p>
+          <p>At the far end, the statue. Enormous — scaled to dwarf everyone who enters. A figure in ancient battered armor, standing upright, one arm extended toward whoever is standing in the nave. The hand is open. Not commanding. Offering.</p>
+          <p>The banners hanging from the ceiling carry his sigil. They are worn. Nobody replaces them when they fray. Worn things that are still standing are considered appropriate here. The cathedral is open to all. No allegiance required at the door. You enter when you need to. You leave when you are ready to stand again.</p>
+        </div>
+      </div>
+    </article>
+
+    <div class="section-divider">· · ·</div>
+
+    <!-- TWINS PLACE -->
+    <article class="place-entry" id="place-twins">
+      <div class="place-image-wrap">
+        <img src="https://i.ibb.co/KjLYPMdH/grju.png" alt="grju" border="0" />
+      </div>
+      <div class="place-content">
+        <div class="place-header">
+          <h2 class="place-name">The Shrines of the Twins</h2>
+          <span class="place-tag">Elyssara & Elyssor — Death — Judgment</span>
+        </div>
+        <div class="place-body">
+          <p>Small ones appear everywhere — doorways, bedsides, sickrooms. Two figures, always together, one luminous and soft, one pale and ink-dark. People do not pray at these shrines for anything. They acknowledge. A hand rested briefly on the stone, a candle lit, a moment of stillness. <em>I know you are there. I know you will come. I am not pretending otherwise.</em></p>
+          <p>The large shrine sits in the port city closest to the Abyss — built from white stone and dark stone wound through each other like threads. Elyssara's half is open to the night sky. Elyssor's half is closed, lit only by candles, its walls lined floor to ceiling with the names of the dead recorded in a script so small it requires patience to read.</p>
+          <p>Ships arriving in port observe a moment of silence facing the direction of the Abyss and the Crystal Tower beyond it. No authority enforces this. It simply happens, consistently, because the sea is the sea and some acknowledgments make themselves.</p>
+        </div>
+      </div>
+    </article>
+
+    <div class="section-divider">· · ·</div>
+
+    <!-- SELYRA PLACE -->
+    <article class="place-entry" id="place-selyra">
+      <div class="place-image-wrap">
+        <img src="https://i.ibb.co/PvRxz6Dn/hth.png" alt="hth" border="0" />
+      </div>
+      <div class="place-content">
+        <div class="place-header">
+          <h2 class="place-name">The Hidden Sanctuaries of Selyra</h2>
+          <span class="place-tag">Greed — Luxury — Accumulation</span>
+        </div>
+        <div class="place-body">
+          <p>They exist. That much is certain. No one admits to having been inside one. The social cost of association with Selyra's worship is high enough that even confirmed sightings tend to get quietly revised in the retelling.</p>
+          <p>What is known, pieced together from secondhand accounts and the occasional too-detailed denial, is that her sanctuaries are hidden in plain sight. Behind merchant back rooms. Beneath wealthy estates. Inside buildings that present entirely respectable faces to the street. The interiors are described as oppressively beautiful — gold piled on gold, candlelight on treasure, a dark statue at the center with eyes that catch the light in a way that makes you feel seen and assessed at the same time.</p>
+          <p>The curse attached to theft from her sanctuaries is taken seriously even by people who would never admit to believing in her. Steal from a sanctuary of Selyra — small or large — and something follows your bloodline for generations. Not dramatic. Not announced. Just a slow, steady unraveling of luck and abundance. Nobody tests it.</p>
+        </div>
+      </div>
+    </article>
+
+    <div class="section-divider">· · ·</div>
+
+    <!-- VIARAXIS PLACE -->
+    <article class="place-entry" id="place-viaraxis">
+      <div class="place-image-wrap">
+        <img src="https://i.ibb.co/Zz9JzNHK/temple.png" alt="temple" border="0" />
+      </div>
+      <div class="place-content">
+        <div class="place-header">
+          <h2 class="place-name">Lothlo</h2>
+          <span class="place-tag">Viaraxis — Magic — Guidance — Bloom</span>
+        </div>
+        <div class="place-body">
+          <p>Lothlo sits at the western edge of the Scar of Sundering — close enough that on calm nights, the Scar's glow lights the stone corridors without a single torch. Close enough that when storms roll in and the Scar begins to sing, every Reader in the complex stops what they are doing and listens.</p>
+          <p>It was built here on purpose. The founders understood that if Viaraxis is closest to the world at the Scar, then this is where her whispers are loudest, where a Reader can hear the clearest. The risk — the occasional thing that crawls out, the wild surges of mana during unstable periods — was considered acceptable. More than acceptable. Expected. You do not come to Lothlo looking for comfort. You come looking for clarity.</p>
+          <p>The complex rises from natural pale stone — columns of gold-veined marble open to the sky, wide archways that let clouds drift through during storms, a great central dome with no ceiling above it. Just open air. Viaraxis cannot be contained. Neither can her house.</p>
+          <p>About a hundred people live here permanently. Readers at every stage of their practice, novices still learning to separate vision from noise, and the support community that keeps everything running. Pilgrims come and go. Adventurers pass through. The temple turns no one away. What it does not offer is speed. Lothlo does not rush.</p>
+          <p>Beneath the temple, a tunnel opens onto an underground river with a boat. Follow it long enough and it finds the sea — not far from where the Abyss sits, where the twins' birthmarks meet the water. It is used for the dead. Those who die at Lothlo are placed in the boat and sent down the river in silence. No ceremony. No words. The current carries them toward Elyssara's arms.</p>
+        </div>
+      </div>
+    </article>
+  </main>
+</div>
+
+<footer>
+  <div class="scar-divider" style="margin-bottom:32px"></div>
+  <p>Panthéon of Evelia — The Divine Codex</p>
+  <p style="margin-top:8px;opacity:0.4">Seven Gods. One World. Before the end, she will speak.</p>
+</footer>
+
+</body>
+</html>
